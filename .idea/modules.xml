@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DatingApp.iml" filepath="$PROJECT_DIR$/.idea/modules/DatingApp.iml" group="DatingApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="DatingApp/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/custom-font-style-lib/custom-font-style-lib.iml" filepath="$PROJECT_DIR$/.idea/modules/custom-font-style-lib/custom-font-style-lib.iml" group="DatingApp/custom-font-style-lib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/image_cropping/image_cropping.iml" filepath="$PROJECT_DIR$/.idea/modules/image_cropping/image_cropping.iml" group="DatingApp/image_cropping" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/instagramhelper/instagramhelper.iml" filepath="$PROJECT_DIR$/.idea/modules/instagramhelper/instagramhelper.iml" group="DatingApp/instagramhelper" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/photoview/photoview.iml" filepath="$PROJECT_DIR$/.idea/modules/photoview/photoview.iml" group="DatingApp/photoview" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/signinwithapplebutton/signinwithapplebutton.iml" filepath="$PROJECT_DIR$/.idea/modules/signinwithapplebutton/signinwithapplebutton.iml" group="DatingApp/signinwithapplebutton" />
+    </modules>
+  </component>
+</project>
