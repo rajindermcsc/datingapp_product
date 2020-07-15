@@ -47,7 +47,7 @@
         android:paddingTop="2dp"
         android:layout_height="35dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/app_logo"
+        android:src="@drawable/app_logo_pink"
         android:tint="@drawable/selector_igniter_tab"
         android:visibility="gone" />
 </RelativeLayout>

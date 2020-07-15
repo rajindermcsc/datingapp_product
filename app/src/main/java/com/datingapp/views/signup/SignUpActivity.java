@@ -280,9 +280,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpActivityL
     }
 
     public void putHashMap(String key, String value) {
+        Log.e("TAG", "putHashMap: "+key);
+        Log.e("TAG", "putHashMap: "+value);
         if (signUp.containsKey(key)) signUp.remove(key);
 
         signUp.put(key, value);
+        Log.e("TAG", "putHashMap: "+signUp.toString());
     }
 
     public void removeHashMap(String key) {

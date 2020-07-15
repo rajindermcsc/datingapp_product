@@ -60,7 +60,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_toLeftOf="@+id/customTextView"
                             android:layout_toStartOf="@+id/customTextView"
-                            android:src="@drawable/app_logo"
+                            android:src="@drawable/app_logo_gold"
                             android:tint="@color/gold1" />
 
                         <com.obs.CustomTextView
@@ -136,7 +136,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_toLeftOf="@+id/customTextView1"
                             android:layout_toStartOf="@+id/customTextView1"
-                            android:src="@drawable/app_logo"
+                            android:src="@drawable/app_logo_pink"
                             android:tint="@color/color_accent" />
 
                         <com.obs.CustomTextView

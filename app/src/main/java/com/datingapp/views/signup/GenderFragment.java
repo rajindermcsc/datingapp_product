@@ -109,6 +109,7 @@ public class GenderFragment extends Fragment implements View.OnClickListener, Ra
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             hashMap = (HashMap<String, String>) bundle.getSerializable("map");
+            Log.e("TAG", "onActivityCreated: "+hashMap.get("auth_id"));
             if (hashMap != null)
                 Log.v("HashMapTest", hashMap.get("auth_id"));
         }

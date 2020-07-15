@@ -301,7 +301,6 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         getSettingsDetails();
 
         setupHelper();
-        ;
         type = "super_like";
         if (type.equals("boost"))
             mSelectedSubscriptionPeriod = SKU_INFINITE_FIVE_BOOST;
@@ -323,59 +322,59 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         System.out.println("privacyPolicy url " + privacyPolicyUrl);
         System.out.println("termsOfService url " + termsOfServiceUrl);
 
-        tvHeader = (CustomTextView) findViewById(R.id.tv_header_title);
-        tvBackArrow = (CustomTextView) findViewById(R.id.tv_left_arrow);
+        tvHeader = findViewById(R.id.tv_header_title);
+        tvBackArrow = findViewById(R.id.tv_left_arrow);
 
-        rvLocationList = (CustomRecyclerView) findViewById(R.id.rv_location_list);
-        tvCurrentLocation = (CustomTextView) findViewById(R.id.tv_current_location);
-        tvAddNewLocation = (CustomTextView) findViewById(R.id.tv_add_new_location);
-        tvMaxDistance = (CustomTextView) findViewById(R.id.tv_max_distance);
-        tvAgeRange = (CustomTextView) findViewById(R.id.tv_age);
-        tvClaimYours = (CustomTextView) findViewById(R.id.tv_claim_yours);
-        tvClaimYoursIcon = (CustomTextView) findViewById(R.id.tv_claim_yours_icon);
-        tvViewProfile = (CustomTextView) findViewById(R.id.tv_view_profile);
-        tvShareMyUrl = (CustomTextView) findViewById(R.id.tv_share_my_url);
-        tv_user_name = (CustomTextView) findViewById(R.id.tv_user_name);
+        rvLocationList = findViewById(R.id.rv_location_list);
+        tvCurrentLocation = findViewById(R.id.tv_current_location);
+        tvAddNewLocation = findViewById(R.id.tv_add_new_location);
+        tvMaxDistance = findViewById(R.id.tv_max_distance);
+        tvAgeRange = findViewById(R.id.tv_age);
+        tvClaimYours = findViewById(R.id.tv_claim_yours);
+        tvClaimYoursIcon = findViewById(R.id.tv_claim_yours_icon);
+        tvViewProfile = findViewById(R.id.tv_view_profile);
+        tvShareMyUrl = findViewById(R.id.tv_share_my_url);
+        tv_user_name = findViewById(R.id.tv_user_name);
 
-        tvShowDistance = (CustomTextView) findViewById(R.id.tv_show_distance);
-        tvShareIgniter = (CustomTextView) findViewById(R.id.tv_share_igniter);
-        tvRestorePurchase = (CustomTextView) findViewById(R.id.tv_restore_purchase);
+        tvShowDistance = findViewById(R.id.tv_show_distance);
+        tvShareIgniter = findViewById(R.id.tv_share_igniter);
+        tvRestorePurchase = findViewById(R.id.tv_restore_purchase);
 
-        tvLicense = (CustomTextView) findViewById(R.id.tv_license);
-        tvPrivacyPolicy = (CustomTextView) findViewById(R.id.tv_privacy_policy);
-        tvTermsService = (CustomTextView) findViewById(R.id.tv_terms_service);
-        men_women = (CustomTextView) findViewById(R.id.men_women);
-        tv_men = (CustomTextView) findViewById(R.id.tv_men);
-        tv_women = (CustomTextView) findViewById(R.id.tv_women);
-        women_layout = (RelativeLayout) findViewById(R.id.women_layout);
-        men_layout = (RelativeLayout) findViewById(R.id.men_layout);
-
-
-        lltAddNewLocation = (LinearLayout) findViewById(R.id.llt_add_new_location);
-
-        swMen = (SwitchCompat) findViewById(R.id.switch_men);
-        swWomen = (SwitchCompat) findViewById(R.id.switch_women);
-        swShowMeOnIgniter = (SwitchCompat) findViewById(R.id.switch_show_me);
-        swNewMatches = (SwitchCompat) findViewById(R.id.switch_new_matches);
-        swMessages = (SwitchCompat) findViewById(R.id.switch_messages);
-        swMessageLike = (SwitchCompat) findViewById(R.id.switch_message_likes);
-        swSuperLike = (SwitchCompat) findViewById(R.id.switch_super_likes);
+        tvLicense = findViewById(R.id.tv_license);
+        tvPrivacyPolicy = findViewById(R.id.tv_privacy_policy);
+        tvTermsService = findViewById(R.id.tv_terms_service);
+        men_women = findViewById(R.id.men_women);
+        tv_men = findViewById(R.id.tv_men);
+        tv_women = findViewById(R.id.tv_women);
+        women_layout = findViewById(R.id.women_layout);
+        men_layout = findViewById(R.id.men_layout);
 
 
-        rgShowDistance = (RadioGroup) findViewById(R.id.rdg_distance);
-        rbMi = (RadioButton) findViewById(R.id.rb_mi);
-        rbKm = (RadioButton) findViewById(R.id.rb_km);
+        lltAddNewLocation = findViewById(R.id.llt_add_new_location);
 
-        sbAgeRange = (RangeSeekBar) findViewById(R.id.sb_age_range);
-        sbMaxDistance = (CustomSeekBar) findViewById(R.id.sb_max_distance);
+        swMen = findViewById(R.id.switch_men);
+        swWomen = findViewById(R.id.switch_women);
+        swShowMeOnIgniter = findViewById(R.id.switch_show_me);
+        swNewMatches = findViewById(R.id.switch_new_matches);
+        swMessages = findViewById(R.id.switch_messages);
+        swMessageLike = findViewById(R.id.switch_message_likes);
+        swSuperLike = findViewById(R.id.switch_super_likes);
 
-        cvGetIgniterPlus = (CardView) findViewById(R.id.cv_get_igniter_plus);
-        cvGetMoreBoost = (CardView) findViewById(R.id.cv_get_more_boost);
-        cvHelpSupport = (CardView) findViewById(R.id.cv_help_support);
-        cvLogout = (CardView) findViewById(R.id.cv_logout);
-        cvDeleteAccount = (CardView) findViewById(R.id.cv_delete_account);
-        cvGetSuperLikes = (CardView) findViewById(R.id.cv_get_super_likes);
-        cvGetIgniterGold = (CardView) findViewById(R.id.cv_get_igniter_gold);
+
+        rgShowDistance = findViewById(R.id.rdg_distance);
+        rbMi = findViewById(R.id.rb_mi);
+        rbKm = findViewById(R.id.rb_km);
+
+        sbAgeRange = findViewById(R.id.sb_age_range);
+        sbMaxDistance = findViewById(R.id.sb_max_distance);
+
+        cvGetIgniterPlus = findViewById(R.id.cv_get_igniter_plus);
+        cvGetMoreBoost = findViewById(R.id.cv_get_more_boost);
+        cvHelpSupport = findViewById(R.id.cv_help_support);
+        cvLogout = findViewById(R.id.cv_logout);
+        cvDeleteAccount = findViewById(R.id.cv_delete_account);
+        cvGetSuperLikes = findViewById(R.id.cv_get_super_likes);
+        cvGetIgniterGold = findViewById(R.id.cv_get_igniter_gold);
 
         dialog = commonMethods.getAlertDialog(this);
         updateView();
@@ -437,22 +436,22 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
                 sessionManager.setSettingUpdate(true);
                 if (adminDistanceType.equals(distanceType)) {
                     if (distanceType.equalsIgnoreCase("mi")) {
-                        tvMaxDistance.setText(String.format(getString(R.string.miles), String.valueOf(value)));
+                        tvMaxDistance.setText(String.format(getString(R.string.miles), value));
                         maxDistance = String.valueOf(value);
                     } else {
-                        tvMaxDistance.setText(String.format(getString(R.string.kilometer), String.valueOf(value)));
+                        tvMaxDistance.setText(String.format(getString(R.string.kilometer), value));
                         maxDistance = String.valueOf(value);
                     }
                 } else {
                     if (distanceType.equalsIgnoreCase("mi") && adminDistanceType.equalsIgnoreCase("km")) {
                         double a = Integer.parseInt(value.toString()) / 1.60934;
                         int b = (int) a;
-                        tvMaxDistance.setText(String.format(getString(R.string.miles), String.valueOf(b)));
+                        tvMaxDistance.setText(String.format(getString(R.string.miles), b));
                         maxDistance = String.valueOf(value);
                     } else {
                         double a = Integer.parseInt(value.toString()) * 1.60934;
                         int b = (int) a;
-                        tvMaxDistance.setText(String.format(getString(R.string.kilometer), String.valueOf(b)));
+                        tvMaxDistance.setText(String.format(getString(R.string.kilometer), b));
                         maxDistance = String.valueOf(value);
                     }
                 }
@@ -853,13 +852,13 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
 
             if (adminDistanceType.equals(distanceType)) {
                 if (distanceType.equalsIgnoreCase("mi")) {
-                    tvMaxDistance.setText(String.format(getString(R.string.miles), String.valueOf(maxDistance)));
+                    tvMaxDistance.setText(String.format(getString(R.string.miles), maxDistance));
                     maxDistance = String.valueOf(maxDistance);
                     rbMi.setChecked(true);
                     tvShowDistance.setText(getString(R.string.mile));
 
                 } else {
-                    tvMaxDistance.setText(String.format(getString(R.string.kilometer), String.valueOf(maxDistance)));
+                    tvMaxDistance.setText(String.format(getString(R.string.kilometer), maxDistance));
                     maxDistance = String.valueOf(maxDistance);
 
                     tvShowDistance.setText(getString(R.string.km));
@@ -997,19 +996,19 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         int b;
         if (adminDistanceType.equals(distanceType)) {
             if (distanceType.equalsIgnoreCase("mi")) {
-                tvMaxDistance.setText(String.format(getString(R.string.miles), String.valueOf(maxDistance)));
+                tvMaxDistance.setText(String.format(getString(R.string.miles), maxDistance));
             } else {
-                tvMaxDistance.setText(String.format(getString(R.string.kilometer), String.valueOf(maxDistance)));
+                tvMaxDistance.setText(String.format(getString(R.string.kilometer), maxDistance));
             }
         } else {
             if (distanceType.equalsIgnoreCase("mi") && adminDistanceType.equalsIgnoreCase("km")) {
                 a = Integer.parseInt(maxDistance) / 1.60934;
                 b = (int) a;
-                tvMaxDistance.setText(String.format(getString(R.string.miles), String.valueOf(b)));
+                tvMaxDistance.setText(String.format(getString(R.string.miles), b));
             } else {
                 a = Integer.parseInt(maxDistance) * 1.60934;
                 b = (int) a;
-                tvMaxDistance.setText(String.format(getString(R.string.kilometer), String.valueOf(b)));
+                tvMaxDistance.setText(String.format(getString(R.string.kilometer), b));
             }
         }
     }

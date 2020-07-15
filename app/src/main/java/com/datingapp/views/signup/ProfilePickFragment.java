@@ -195,6 +195,7 @@ public class ProfilePickFragment extends Fragment implements View.OnClickListene
     }
 
     public RequestBody getSignUpParam(String imagePath) throws IOException {
+        Log.e("TAG", "getSignUpParam: ");
         MultipartBody.Builder multipartBody = new MultipartBody.Builder();
         multipartBody.setType(MultipartBody.FORM);
         File file = null;
@@ -204,12 +205,15 @@ public class ProfilePickFragment extends Fragment implements View.OnClickListene
             multipartBody.addFormDataPart("image", "IMG_" + timeStamp + ".jpg",
                     RequestBody.create(MediaType.parse("image/jpeg"), file));
             for (Map.Entry<String, String> entry : mActivity.getHashMap().entrySet()) {
+                Log.e("TAG", "getSignUpParam: "+entry.getKey());
+                Log.e("TAG", "getSignUpParam: "+entry.getValue());
                 if (!TextUtils.isEmpty(entry.getKey()) && !TextUtils.isEmpty(entry.getValue())) {
                     multipartBody.addFormDataPart(entry.getKey(), entry.getValue());
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("TAG", "getSignUpParam: "+e.getMessage());
         }
         RequestBody formBody = multipartBody.build();
         return formBody;
@@ -427,14 +431,17 @@ public class ProfilePickFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onImageCompress(String filePath, RequestBody requestBody) {
-        commonMethods.hideProgressDialog();
-        if (!TextUtils.isEmpty(filePath) && requestBody != null) {
+//        commonMethods.hideProgressDialog();
+//        if (!TextUtils.isEmpty(filePath) && requestBody != null) {
             try {
-                commonMethods.showProgressDialog(mActivity, customDialog);
+//                commonMethods.showProgressDialog(mActivity, customDialog);
                 apiService.signUp(getSignUpParam(filePath)).enqueue(new RequestCallback(REQ_NUMBER_SIGNUP, this));
+
+                Log.e("TAG", "onImageCompress: "+getSignUpParam(filePath));
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+                Log.e("TAG", "onImageCompress: "+e.getMessage());
+//            }
         }
     }
 

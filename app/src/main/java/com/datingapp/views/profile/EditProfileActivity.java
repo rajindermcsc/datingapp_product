@@ -898,6 +898,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         if (!TextUtils.isEmpty(filePath) && requestBody != null) {
             commonMethods.showProgressDialog(this, customDialog);
             apiService.uploadProfileImg(requestBody).enqueue(new RequestCallback(REQ_UPLOAD_PROFILE_IMG, this));
+
         }
     }
 
