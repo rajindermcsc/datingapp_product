@@ -18,7 +18,7 @@
             android:background="@color/edit_profile_bg"
             android:orientation="vertical">
 
-            <com.datingapp.views.customize.CustomRecyclerView
+            <com.websoftquality.gofriend.views.customize.CustomRecyclerView
                 android:id="@+id/rv_edit_profile_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

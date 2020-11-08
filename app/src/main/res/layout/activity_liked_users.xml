@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.datingapp.likedusers.LikedUsersActivity">
+    tools:context="com.websoftquality.gofriend.likedusers.LikedUsersActivity">
 
     <include
         android:id="@+id/i_header"
@@ -63,7 +63,7 @@
                 android:visibility="gone"
                 android:text="@string/gold_title" />
 
-            <com.datingapp.views.customize.CustomRecyclerView
+            <com.websoftquality.gofriend.views.customize.CustomRecyclerView
                 android:id="@+id/rv_liked_users"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -32,7 +32,7 @@
             android:layout_height="180dp"
             android:layout_below="@+id/tv_igniter_plus_title" />
 
-        <com.datingapp.views.customize.CirclePageIndicator
+        <com.websoftquality.gofriend.views.customize.CirclePageIndicator
             android:id="@+id/indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

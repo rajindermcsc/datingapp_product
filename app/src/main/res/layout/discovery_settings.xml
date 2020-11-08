@@ -106,7 +106,7 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <com.datingapp.views.customize.CustomRecyclerView
+                <com.websoftquality.gofriend.views.customize.CustomRecyclerView
                     android:id="@+id/rv_location_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -273,7 +273,7 @@
                 android:textColor="@color/text_very_dark"
                 android:textSize="18sp" />
 
-            <com.datingapp.views.customize.CustomSeekBar
+            <com.websoftquality.gofriend.views.customize.CustomSeekBar
                 android:id="@+id/sb_max_distance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -331,7 +331,7 @@
                 android:textColor="@color/text_very_dark"
                 android:textSize="18sp" />
 
-            <com.datingapp.views.customize.RangeSeekBar
+            <com.websoftquality.gofriend.views.customize.RangeSeekBar
                 android:id="@+id/sb_age_range"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -7,7 +7,7 @@
 
     <include layout="@layout/swipe_card_layout" />
 
-    <com.datingapp.views.customize.RippleBackground
+    <com.websoftquality.gofriend.views.customize.RippleBackground
         android:id="@+id/rb_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,7 +42,7 @@
             android:textColor="@color/text_semi_dark"
             android:textSize="17sp" />
 
-    </com.datingapp.views.customize.RippleBackground>
+    </com.websoftquality.gofriend.views.customize.RippleBackground>
 
     <RelativeLayout
         android:id="@+id/llt_igniter_action"

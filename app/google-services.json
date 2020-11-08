@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:368049320671:android:14d833bf56ca5aa3566f6a",
+        "mobilesdk_app_id": "1:368049320671:android:9e369edf2f1e5951566f6a",
         "android_client_info": {
-          "package_name": "com.datingapp"
+          "package_name": "com.websoftquality.gofriend"
         }
       },
       "oauth_client": [
@@ -28,8 +28,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "368049320671-ee3ga1l9sjt15d780e37b9qab1dsf0a8.apps.googleusercontent.com",
+              "client_id": "368049320671-563o5rum55oe45r28b32iehtvpq4lclf.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "368049320671-c8ihh2me91n23b70ol86qt8fnv9s99go.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dev.GoFriend"
+              }
             }
           ]
         }

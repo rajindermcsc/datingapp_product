@@ -231,7 +231,7 @@
 
                     </LinearLayout>
 
-                    <com.datingapp.views.customize.CustomRecyclerView
+                    <com.websoftquality.gofriend.views.customize.CustomRecyclerView
                         android:id="@+id/rv_new_matches_list"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
@@ -255,7 +255,7 @@
                     android:textSize="18sp"
                     android:visibility="gone" />
 
-                <com.datingapp.views.customize.CustomRecyclerView
+                <com.websoftquality.gofriend.views.customize.CustomRecyclerView
                     android:id="@+id/rv_message_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

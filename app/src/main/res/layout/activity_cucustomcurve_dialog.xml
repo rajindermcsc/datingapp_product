@@ -58,7 +58,7 @@
             android:paddingBottom="20dp"
             android:background="@drawable/curve_radius_background"
             android:layout_weight="1">
-        <com.datingapp.views.customize.CustomRecyclerView
+        <com.websoftquality.gofriend.views.customize.CustomRecyclerView
             android:id="@+id/rv_reason_unmatch_list"
             android:layout_width="match_parent"
             android:layout_height="180dp"

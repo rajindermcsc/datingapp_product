@@ -20,12 +20,12 @@
                 android:layout_height="350dp"
                 android:layout_alignParentTop="true">
 
-                <com.datingapp.views.customize.IgniterViewPager
+                <com.websoftquality.gofriend.views.customize.IgniterViewPager
                     android:id="@+id/vp_enlarge_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <com.datingapp.views.customize.CirclePageIndicator
+                <com.websoftquality.gofriend.views.customize.CirclePageIndicator
                     android:id="@+id/cpi_enlarge_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -191,14 +191,14 @@
             android:layout_below="@+id/curve_view"
             android:visibility="gone">
 
-            <com.datingapp.views.customize.IgniterViewPager
+            <com.websoftquality.gofriend.views.customize.IgniterViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 android:paddingTop="5dp" />
 
-            <com.datingapp.views.customize.CirclePageIndicator
+            <com.websoftquality.gofriend.views.customize.CirclePageIndicator
                 android:id="@+id/page_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

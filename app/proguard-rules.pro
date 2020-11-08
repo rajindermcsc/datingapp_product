@@ -70,13 +70,13 @@
 }
 
 
--keep public class com.datingapp.datamodels.** {*;}
--keep class com.datingapp.views.main.LoginActivity
--keep class com.datingapp.utils.** {*;}
--keepclasseswithmembernames class com.datingapp.utils.** {*;}
+-keep public class com.websoftquality.gofriend.datamodels.** {*;}
+-keep class com.websoftquality.gofriend.views.main.LoginActivity
+-keep class com.websoftquality.gofriend.utils.** {*;}
+-keepclasseswithmembernames class com.websoftquality.gofriend.utils.** {*;}
 
--keep class com.datingapp.utils.** {*;}
--keepclasseswithmembernames class com.datingapp.utils.** {*;}
+-keep class com.websoftquality.gofriend.utils.** {*;}
+-keepclasseswithmembernames class com.websoftquality.gofriend.utils.** {*;}
 
 
 # Retrofit 2.X

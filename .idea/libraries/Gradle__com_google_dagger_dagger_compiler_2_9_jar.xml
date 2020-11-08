@@ -3,7 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.9/276b9c7acc73acb449e1837a47623a7b94afd90b/dagger-compiler-2.9.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.9/1be8c788c744b4f9f22a3a3ba6347a598cf9b0b1/dagger-compiler-2.9-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.9/ca3bd476ad2b1a452dfb0eade02c3b7efa2e4a65/dagger-compiler-2.9-sources.jar!/" />
     </SOURCES>

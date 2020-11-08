@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.datingapp.swipedeck.layouts.SwipeRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.websoftquality.gofriend.swipedeck.layouts.SwipeRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:swipedeck="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     android:background="@color/gray_back"
     android:orientation="vertical">
 
-    <com.datingapp.swipedeck.SwipeDeck
+    <com.websoftquality.gofriend.swipedeck.SwipeDeck
         android:id="@+id/swipe_deck"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,4 +23,4 @@
         swipedeck:preview_layout="@layout/swipe_card_item"
         swipedeck:render_above="false" />
 
-</com.datingapp.swipedeck.layouts.SwipeRelativeLayout>
+</com.websoftquality.gofriend.swipedeck.layouts.SwipeRelativeLayout>

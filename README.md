@@ -1,1 +1,1 @@
-# com.datingapp.android-app
+# com.websoftquality.gofriend.android-app

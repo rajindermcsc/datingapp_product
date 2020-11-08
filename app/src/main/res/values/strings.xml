@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!DOCTYPE resources [<!ENTITY appname "DatingApp">]>
+<!DOCTYPE resources [<!ENTITY appname "GoFriend">]>
 
 <resources>
     <string name="app_name">&appname;</string>
-    <string name="package_name">com.datingapp</string>
-    <string name="version">Version 1.3.1</string>
+    <string name="package_name">com.websoftquality.gofriend</string>
+    <string name="version">Version 1.0.0</string>
 
     <string name="base_url">"https://websoftquality.com/dating/public/api/"</string>
     <string name="share_url">"https://websoftquality.com/dating/public/admin/login"</string>
@@ -21,6 +21,7 @@
     <string name="ACCOUNT_KIT_CLIENT_TOKEN" translatable="false">e0696b8fe5c76dbc50d0b284eb21d3b9</string>
     <string name="facebook_app_id">1670124539805970</string>
     <string name="fb_login_protocol_scheme">fb1670124539805970</string>
+
 
 
     <!-- Google map and place API key -->
@@ -247,7 +248,7 @@
     <string name="terms_service">Terms of Service</string>
     <string name="logout">Logout</string>
     <string name="delete_account">Delete Account</string>
-    <string name="username_hint">com.datingapp.com/@</string>
+    <string name="username_hint">com.websoftquality.gofriend.com/@</string>
     <string name="error_msg">"Username already taken"</string>
     <string name="confirm">Confirm</string>
     <string name="del">Delete</string>
