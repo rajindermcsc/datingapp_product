@@ -54,6 +54,7 @@
 
             <com.willowtreeapps.signinwithapplebutton.view.SignInWithAppleButton
                 android:id="@+id/btnapplelogin"
+                android:visibility="gone"
                 style="@style/SignInWithAppleButton.Blackoval"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

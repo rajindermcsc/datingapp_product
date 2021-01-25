@@ -32,7 +32,7 @@ import java.util.List;
 import com.websoftquality.gofriend.R;
 import com.websoftquality.gofriend.configs.AppController;
 import com.websoftquality.gofriend.iaputils.IabBroadcastReceiver;
-import com.websoftquality.gofriend.iaputils.IabHelper;
+//import com.websoftquality.gofriend.iaputils.IabHelper;
 import com.websoftquality.gofriend.iaputils.IabResult;
 import com.websoftquality.gofriend.iaputils.Inventory;
 import com.websoftquality.gofriend.iaputils.Purchase;
@@ -53,7 +53,7 @@ public class BoostDialogActivity extends AppCompatActivity implements IabBroadca
     // Used to select between purchasing Boost on a monthly ,half yearly or yearly basis
     String mSelectedSubscriptionPeriod = "";
     // The helper object
-    IabHelper mHelper;
+//    IabHelper mHelper;
     // Provides purchase notification while this app is running
     IabBroadcastReceiver mBroadcastReceiver;
     String payload = "";
@@ -64,102 +64,102 @@ public class BoostDialogActivity extends AppCompatActivity implements IabBroadca
     // Tracks the currently owned infinite Boost SKU, and the options in the Manage dialog
     String mInfiniteBoostSku = "";
     // Listener that's called when we finish querying the items and subscriptions we own
-    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
-            Log.e(TAG, "Query inventory finished.");
-
-            // Have we been disposed of in the meantime? If so, quit.
-            if (mHelper == null) return;
-
-            // Is it a failure?
-            if (result.isFailure()) {
-                complain(getString(R.string.failed_query_inv)+": " + result);
-                return;
-            }
-
-            Log.e(TAG, "Query inventory was successful.");
-
-            /*
-             * Check for items we own. Notice that for each purchase, we check
-             * the developer payload to see if it's correct! See
-             * verifyDeveloperPayload().
-             */
-
-            /*// Do we have the premium upgrade?
-            Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
-            mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
-            Log.e(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
-*/
-            // First find out which subscription is auto renewing
-            Purchase oneBoost = inventory.getPurchase(SKU_INFINITE_ONE_BOOST);
-            Purchase fiveBoost = inventory.getPurchase(SKU_INFINITE_FIVE_BOOST);
-            Purchase tenBoost = inventory.getPurchase(SKU_INFINITE_FIVE_BOOST);
-            if (oneBoost != null && oneBoost.isAutoRenewing()) {
-                mInfiniteBoostSku = SKU_INFINITE_ONE_BOOST;
-                mAutoRenewEnabled = true;
-            } else if (fiveBoost != null && fiveBoost.isAutoRenewing()) {
-                mInfiniteBoostSku = SKU_INFINITE_FIVE_BOOST;
-                mAutoRenewEnabled = true;
-            } else if (tenBoost != null && tenBoost.isAutoRenewing()) {
-                mInfiniteBoostSku = SKU_INFINITE_TEN_BOOST;
-                mAutoRenewEnabled = true;
-            } else {
-                mInfiniteBoostSku = "";
-                mAutoRenewEnabled = false;
-            }
-
-            // The user is subscribed if either subscription exists, even if neither is auto
-            // renewing
-            mSubscribedToInfiniteBoost = (oneBoost != null && verifyDeveloperPayload(oneBoost))
-                    || (fiveBoost != null && verifyDeveloperPayload(fiveBoost)
-                    || (tenBoost != null && verifyDeveloperPayload(tenBoost)));
-            Log.e(TAG, "User " + (mSubscribedToInfiniteBoost ? "HAS" : "DOES NOT HAVE")
-                    + " infinite Boost subscription.");
-            //if (mSubscribedToInfiniteBoost) mTank = TANK_MAX;
-
-
-            /*// Check for Boost delivery -- if we own Boost, we should fill up the tank immediately
-            Purchase BoostPurchase = inventory.getPurchase(SKU_Boost);
-            if (BoostPurchase != null && verifyDeveloperPayload(BoostPurchase)) {
-                Log.d(TAG, "We have Boost. Consuming it.");
-                try {
-                    mHelper.consumeAsync(inventory.getPurchase(SKU_Boost), mConsumeFinishedListener);
-                } catch (IabHelper.IabAsyncInProgressException e) {
-                    complain("Error consuming Boost. Another async operation in progress.");
-                }
-                return;
-            }
-            Log.d(TAG, "Initial inventory query finished; enabling main UI.");*/
-        }
-    };
+//    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
+//        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
+//            Log.e(TAG, "Query inventory finished.");
+//
+//            // Have we been disposed of in the meantime? If so, quit.
+//            if (mHelper == null) return;
+//
+//            // Is it a failure?
+//            if (result.isFailure()) {
+//                complain(getString(R.string.failed_query_inv)+": " + result);
+//                return;
+//            }
+//
+//            Log.e(TAG, "Query inventory was successful.");
+//
+//            /*
+//             * Check for items we own. Notice that for each purchase, we check
+//             * the developer payload to see if it's correct! See
+//             * verifyDeveloperPayload().
+//             */
+//
+//            /*// Do we have the premium upgrade?
+//            Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
+//            mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
+//            Log.e(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
+//*/
+//            // First find out which subscription is auto renewing
+//            Purchase oneBoost = inventory.getPurchase(SKU_INFINITE_ONE_BOOST);
+//            Purchase fiveBoost = inventory.getPurchase(SKU_INFINITE_FIVE_BOOST);
+//            Purchase tenBoost = inventory.getPurchase(SKU_INFINITE_FIVE_BOOST);
+//            if (oneBoost != null && oneBoost.isAutoRenewing()) {
+//                mInfiniteBoostSku = SKU_INFINITE_ONE_BOOST;
+//                mAutoRenewEnabled = true;
+//            } else if (fiveBoost != null && fiveBoost.isAutoRenewing()) {
+//                mInfiniteBoostSku = SKU_INFINITE_FIVE_BOOST;
+//                mAutoRenewEnabled = true;
+//            } else if (tenBoost != null && tenBoost.isAutoRenewing()) {
+//                mInfiniteBoostSku = SKU_INFINITE_TEN_BOOST;
+//                mAutoRenewEnabled = true;
+//            } else {
+//                mInfiniteBoostSku = "";
+//                mAutoRenewEnabled = false;
+//            }
+//
+//            // The user is subscribed if either subscription exists, even if neither is auto
+//            // renewing
+//            mSubscribedToInfiniteBoost = (oneBoost != null && verifyDeveloperPayload(oneBoost))
+//                    || (fiveBoost != null && verifyDeveloperPayload(fiveBoost)
+//                    || (tenBoost != null && verifyDeveloperPayload(tenBoost)));
+//            Log.e(TAG, "User " + (mSubscribedToInfiniteBoost ? "HAS" : "DOES NOT HAVE")
+//                    + " infinite Boost subscription.");
+//            //if (mSubscribedToInfiniteBoost) mTank = TANK_MAX;
+//
+//
+//            /*// Check for Boost delivery -- if we own Boost, we should fill up the tank immediately
+//            Purchase BoostPurchase = inventory.getPurchase(SKU_Boost);
+//            if (BoostPurchase != null && verifyDeveloperPayload(BoostPurchase)) {
+//                Log.d(TAG, "We have Boost. Consuming it.");
+//                try {
+//                    mHelper.consumeAsync(inventory.getPurchase(SKU_Boost), mConsumeFinishedListener);
+//                } catch (IabHelper.IabAsyncInProgressException e) {
+//                    complain("Error consuming Boost. Another async operation in progress.");
+//                }
+//                return;
+//            }
+//            Log.d(TAG, "Initial inventory query finished; enabling main UI.");*/
+//        }
+//    };
     // Callback for when a purchase is finished
-    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
-
-            if (result.isFailure()) {
-                complain(getString(R.string.error_purchasing)+": " + result);
-                return;
-            }
-            if (!verifyDeveloperPayload(purchase)) {
-                complain(getString(R.string.er_verfn_failed));
-                return;
-            }
-
-            Log.e(TAG, "Purchase successful.");
-
-            if (purchase.getSku().equals(SKU_INFINITE_ONE_BOOST)
-                    || purchase.getSku().equals(SKU_INFINITE_FIVE_BOOST)
-                    || purchase.getSku().equals(SKU_INFINITE_TEN_BOOST)) {
-                // bought the infinite Boost subscription
-                alert(getString(R.string.subscribed_boost));
-                mAutoRenewEnabled = purchase.isAutoRenewing();
-                mInfiniteBoostSku = purchase.getSku();
-            }
-        }
-    };
+//    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
+//        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+//
+//            // if we were disposed of in the meantime, quit.
+//            if (mHelper == null) return;
+//
+//            if (result.isFailure()) {
+//                complain(getString(R.string.error_purchasing)+": " + result);
+//                return;
+//            }
+//            if (!verifyDeveloperPayload(purchase)) {
+//                complain(getString(R.string.er_verfn_failed));
+//                return;
+//            }
+//
+//            Log.e(TAG, "Purchase successful.");
+//
+//            if (purchase.getSku().equals(SKU_INFINITE_ONE_BOOST)
+//                    || purchase.getSku().equals(SKU_INFINITE_FIVE_BOOST)
+//                    || purchase.getSku().equals(SKU_INFINITE_TEN_BOOST)) {
+//                // bought the infinite Boost subscription
+//                alert(getString(R.string.subscribed_boost));
+//                mAutoRenewEnabled = purchase.isAutoRenewing();
+//                mInfiniteBoostSku = purchase.getSku();
+//            }
+//        }
+//    };
     private LinearLayout lltTwelveMonth, lltSixMonth, lltOneMonth;
     private CustomTextView tvSixMonthSave, tvTwelveMonthSave;
     private CustomTextView tvTwelveMonth, tvSixMonth, tvOneMonth;
@@ -306,46 +306,46 @@ public class BoostDialogActivity extends AppCompatActivity implements IabBroadca
 
         // Create the helper, passing it our context and the public key to verify signatures with
         Log.e(TAG, "Creating IAB helper.");
-        mHelper = new IabHelper(this, base64EncodedPublicKey);
+//        mHelper = new IabHelper(this, base64EncodedPublicKey);
 
         // enable debug logging (for a production application, you should set this to false).
-        mHelper.enableDebugLogging(true);
+//        mHelper.enableDebugLogging(true);
 
         // Start setup. This is asynchronous and the specified listener
         // will be called once setup completes.
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
-                Log.e(TAG, "Setup finished.");
-
-                if (!result.isSuccess()) {
-                    // Oh noes, there was a problem.
-                    complain(getString(R.string.pbm_inapp_set)+": " + result);
-                    return;
-                }
-
-                // Have we been disposed of in the meantime? If so, quit.
-                if (mHelper == null) return;
-
-                // Important: Dynamically register for broadcast messages about updated purchases.
-                // We register the receiver here instead of as a <receiver> in the Manifest
-                // because we always call getPurchases() at startup, so therefore we can ignore
-                // any broadcasts sent while the app isn't running.
-                // Note: registering this listener in an Activity is a bad idea, but is done here
-                // because this is a SAMPLE. Regardless, the receiver must be registered after
-                // IabHelper is setup, but before first call to getPurchases().
-                mBroadcastReceiver = new IabBroadcastReceiver(BoostDialogActivity.this);
-                IntentFilter broadcastFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
-                registerReceiver(mBroadcastReceiver, broadcastFilter);
-
-                // IAB is fully set up. Now, let's get an inventory of stuff we own.
-                Log.e(TAG, "Setup successful. Querying inventory.");
-                try {
-                    mHelper.queryInventoryAsync(mGotInventoryListener);
-                } catch (IabHelper.IabAsyncInProgressException e) {
-                    complain(getString(R.string.er_query_inventry));
-                }
-            }
-        });
+//        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+//            public void onIabSetupFinished(IabResult result) {
+//                Log.e(TAG, "Setup finished.");
+//
+//                if (!result.isSuccess()) {
+//                    // Oh noes, there was a problem.
+//                    complain(getString(R.string.pbm_inapp_set)+": " + result);
+//                    return;
+//                }
+//
+//                // Have we been disposed of in the meantime? If so, quit.
+//                if (mHelper == null) return;
+//
+//                // Important: Dynamically register for broadcast messages about updated purchases.
+//                // We register the receiver here instead of as a <receiver> in the Manifest
+//                // because we always call getPurchases() at startup, so therefore we can ignore
+//                // any broadcasts sent while the app isn't running.
+//                // Note: registering this listener in an Activity is a bad idea, but is done here
+//                // because this is a SAMPLE. Regardless, the receiver must be registered after
+//                // IabHelper is setup, but before first call to getPurchases().
+//                mBroadcastReceiver = new IabBroadcastReceiver(BoostDialogActivity.this);
+//                IntentFilter broadcastFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
+//                registerReceiver(mBroadcastReceiver, broadcastFilter);
+//
+//                // IAB is fully set up. Now, let's get an inventory of stuff we own.
+//                Log.e(TAG, "Setup successful. Querying inventory.");
+//                try {
+//                    mHelper.queryInventoryAsync(mGotInventoryListener);
+//                } catch (IabHelper.IabAsyncInProgressException e) {
+//                    complain(getString(R.string.er_query_inventry));
+//                }
+//            }
+//        });
     }
 
     void callInAppPurchase() {
@@ -359,12 +359,12 @@ public class BoostDialogActivity extends AppCompatActivity implements IabBroadca
         }
 
         Log.e(TAG, "Launching purchase flow for Boost subscription.");
-        try {
-            mHelper.launchPurchaseFlow(this, mSelectedSubscriptionPeriod, IabHelper.ITEM_TYPE_SUBS,
-                    oldSkus, RC_REQUEST, mPurchaseFinishedListener, payload);
-        } catch (IabHelper.IabAsyncInProgressException e) {
-            complain(getString(R.string.er_lanch_another_process));
-        }
+//        try {
+//            mHelper.launchPurchaseFlow(this, mSelectedSubscriptionPeriod, IabHelper.ITEM_TYPE_SUBS,
+//                    oldSkus, RC_REQUEST, mPurchaseFinishedListener, payload);
+//        } catch (IabHelper.IabAsyncInProgressException e) {
+//            complain(getString(R.string.er_lanch_another_process));
+//        }
     }
 
     void complain(String message) {
@@ -381,11 +381,11 @@ public class BoostDialogActivity extends AppCompatActivity implements IabBroadca
     @Override
     public void receivedBroadcast() {
         // Received a broadcast notification that the inventory of items has changed
-        try {
-            mHelper.queryInventoryAsync(mGotInventoryListener);
-        } catch (IabHelper.IabAsyncInProgressException e) {
-            complain(getString(R.string.er_query_inventry));
-        }
+//        try {
+//            mHelper.queryInventoryAsync(mGotInventoryListener);
+//        } catch (IabHelper.IabAsyncInProgressException e) {
+//            complain(getString(R.string.er_query_inventry));
+//        }
     }
 
     /**
@@ -427,10 +427,10 @@ public class BoostDialogActivity extends AppCompatActivity implements IabBroadca
 
         // very important:
         Log.d(TAG, "Destroying helper.");
-        if (mHelper != null) {
-            mHelper.disposeWhenFinished();
-            mHelper = null;
-        }
+//        if (mHelper != null) {
+//            mHelper.disposeWhenFinished();
+//            mHelper = null;
+//        }
 
         // very important:
         if (mBroadcastReceiver != null) {
@@ -441,16 +441,16 @@ public class BoostDialogActivity extends AppCompatActivity implements IabBroadca
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
-        if (mHelper == null) return;
-
-        // Pass on the activity result to the helper for handling
-        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
-            // not handled, so handle it ourselves (here's where you'd
-            // perform any handling of activity results not related to in-app
-            // billing...
-            super.onActivityResult(requestCode, resultCode, data);
-        } else {
-            Log.d(TAG, "onActivityResult handled by IABUtil.");
-        }
+//        if (mHelper == null) return;
+//
+//        // Pass on the activity result to the helper for handling
+//        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
+//            // not handled, so handle it ourselves (here's where you'd
+//            // perform any handling of activity results not related to in-app
+//            // billing...
+//            super.onActivityResult(requestCode, resultCode, data);
+//        } else {
+//            Log.d(TAG, "onActivityResult handled by IABUtil.");
+//        }
     }
 }

@@ -51,6 +51,7 @@ import com.websoftquality.gofriend.views.main.IgniterPlusDialogActivity;
 import com.websoftquality.gofriend.views.main.IgniterPlusSliderFragment;
 import com.websoftquality.gofriend.views.main.LoginActivity;
 import com.websoftquality.gofriend.views.main.SplashActivity;
+import com.websoftquality.gofriend.views.main.StripeCardPaymentActivity;
 import com.websoftquality.gofriend.views.main.TutorialFragment;
 import com.websoftquality.gofriend.views.main.UserNameActivity;
 import com.websoftquality.gofriend.views.main.VerificationActivity;
@@ -200,4 +201,5 @@ public interface AppComponent {
     void inject(SwipeableTouchHelperCallback swipeableTouchHelperCallback);
 
 
+    void inject(StripeCardPaymentActivity stripeCardPaymentActivity);
 }

@@ -130,8 +130,8 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
      * Declare variable for layout views
      */
     private void initViews() {
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        viewPager = (IgniterViewPager) findViewById(R.id.viewpager);
+        tabLayout = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.viewpager);
         myAdapter=new MyAdapter(getSupportFragmentManager());
         viewPager.setAdapter(myAdapter);
         viewPager.setAllowedSwipeDirection(SwipeDirection.all);
@@ -178,11 +178,11 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
      */
     private View getTabView(int title, int type) {
         RelativeLayout tabView = (RelativeLayout) LayoutInflater.from(HomeActivity.this).inflate(R.layout.igniter_tab_view, null);
-        CustomTextView tabtext = (CustomTextView) tabView.findViewById(R.id.tv_igniter_tab_view);
-        ImageView tabImage = (ImageView) tabView.findViewById(R.id.iv_igniter_tab_indicator);
-        RelativeLayout tablay = (RelativeLayout) tabView.findViewById(R.id.rlt_igniter_tab_indicator);
-        RelativeLayout rltLogo = (RelativeLayout) tabView.findViewById(R.id.rlt_logo);
-        ImageView ivLogo = (ImageView) tabView.findViewById(R.id.iv_logo);
+        CustomTextView tabtext = tabView.findViewById(R.id.tv_igniter_tab_view);
+        ImageView tabImage = tabView.findViewById(R.id.iv_igniter_tab_indicator);
+        RelativeLayout tablay = tabView.findViewById(R.id.rlt_igniter_tab_indicator);
+        RelativeLayout rltLogo = tabView.findViewById(R.id.rlt_logo);
+        ImageView ivLogo = tabView.findViewById(R.id.iv_logo);
         tabtext.setText(title);
 
         if (type == 1) {
@@ -349,12 +349,9 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
     public void changeChatIcon(int type) {
         TabLayout.Tab tab = tabLayout.getTabAt(2);
         View view = tab.getCustomView();
-        RelativeLayout tablay = (RelativeLayout)
-                view.findViewById(R.id.rlt_igniter_tab_indicator);
-        ImageView tabImage = (ImageView)
-                view.findViewById(R.id.iv_igniter_tab_indicator);
-        TextView tabText = (TextView)
-                view.findViewById(R.id.tv_igniter_tab_view);
+        RelativeLayout tablay = view.findViewById(R.id.rlt_igniter_tab_indicator);
+        ImageView tabImage = view.findViewById(R.id.iv_igniter_tab_indicator);
+        TextView tabText = view.findViewById(R.id.tv_igniter_tab_view);
         if (type == 1) {
             tabText.setText("b");
             tabImage.setVisibility(View.VISIBLE);

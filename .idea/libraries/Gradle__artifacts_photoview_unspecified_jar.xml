@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: artifacts:photoview:unspecified@jar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/photoview-release.aar/746645319a3612507b38b240734721ad/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/photoview-release.aar/746645319a3612507b38b240734721ad/res" />
+      <root url="jar://$PROJECT_DIR$/photoview/build/.transforms/70edff59523240815ee09f1e7826929b/jetified-photoview-release/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/photoview/build/.transforms/70edff59523240815ee09f1e7826929b/jetified-photoview-release/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -25,7 +25,7 @@ import java.util.Map;
  * An Inventory is returned by such methods as {@link IabHelper#queryInventory}.
  */
 public class Inventory {
-    Map<String, SkuDetails> mSkuMap = new HashMap<String, SkuDetails>();
+//    Map<String, SkuDetails> mSkuMap = new HashMap<String, SkuDetails>();
     Map<String, Purchase> mPurchaseMap = new HashMap<String, Purchase>();
 
     Inventory() {
@@ -34,9 +34,9 @@ public class Inventory {
     /**
      * Returns the listing details for an in-app product.
      */
-    public SkuDetails getSkuDetails(String sku) {
-        return mSkuMap.get(sku);
-    }
+//    public SkuDetails getSkuDetails(String sku) {
+//        return mSkuMap.get(sku);
+//    }
 
     /**
      * Returns purchase information for a given product, or null if there is no purchase.
@@ -55,9 +55,9 @@ public class Inventory {
     /**
      * Return whether or not details about the given product are available.
      */
-    public boolean hasDetails(String sku) {
-        return mSkuMap.containsKey(sku);
-    }
+//    public boolean hasDetails(String sku) {
+//        return mSkuMap.containsKey(sku);
+//    }
 
     /**
      * Erase a purchase (locally) from the inventory, given its product ID. This just
@@ -96,9 +96,9 @@ public class Inventory {
         return new ArrayList<Purchase>(mPurchaseMap.values());
     }
 
-    void addSkuDetails(SkuDetails d) {
-        mSkuMap.put(d.getSku(), d);
-    }
+//    void addSkuDetails(SkuDetails d) {
+//        mSkuMap.put(d.getSku(), d);
+//    }
 
     void addPurchase(Purchase p) {
         mPurchaseMap.put(p.getSku(), p);

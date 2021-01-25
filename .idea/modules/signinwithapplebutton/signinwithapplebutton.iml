@@ -4,8 +4,8 @@
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":signinwithapplebutton" />
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="3.3.2" />
-        <option name="LAST_KNOWN_AGP_VERSION" value="3.3.2" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="3.6.4" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="3.6.4" />
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -19,8 +19,8 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../signinwithapplebutton/src/main/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/debug/res;file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/resValues/debug" />
-        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../signinwithapplebutton/src/androidTest/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/test/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/androidTestDebug/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/testDebug/res;file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/resValues/androidTest/debug" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../signinwithapplebutton/src/main/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/debug/res;file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/rs/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../signinwithapplebutton/src/androidTest/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/test/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/androidTestDebug/res;file://$MODULE_DIR$/../../../signinwithapplebutton/src/testDebug/res;file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/rs/androidTest/debug" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
         <option name="PROJECT_TYPE" value="1" />
       </configuration>
@@ -32,7 +32,7 @@
         </compilerSettings>
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/../../../signinwithapplebutton/build/tmp/kotlin-classes/debug" />
-          <option name="classpath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.3.41/8d3d500e42bd74c17fa9586db8ca85c336979d02/kotlin-android-extensions-runtime-1.3.41.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/core-ktx-1.0.2.aar/3350825be8594ba1bac1934133cfd604/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/40612fe0e169cee49bf2e427e4820541/jars/classes.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.41/a1f331124ba069a09e964ad2640c36f140f2c758/kotlin-stdlib-jdk7-1.3.41.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.41/e24bd38de28a326cce8b1f0d61e809e9a92dad6a/kotlin-stdlib-1.3.41.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/c9bc442e32e27d2e61304226736e318a/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/256ed494b16c2b1ca0d0837edd300855/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/b6ed7bea8049b9ea434b2a9d10988cbb/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/ffaeb9a127beabb666d2ea6aaa724c31/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/1c11a2b08a3aac507614c08f2e9f7f9f/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/76e2238718996666ec02f3f1d196137d/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/110c10baf336662074d2b7d09483425d/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/60d7fd254667b7872f9ee53d1c6fd87c/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/e8818579bef8d896020302e203b187bb/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/9cc647e4a71729e73e5a614ea6697cc1/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/core-1.0.2.aar/c72ddbbbc44fa118f813d435ff837aff/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/d8483f29be35f29cf1a0774667f02403/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/22dde57ea63542612d54188883a437ed/jars/classes.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.0.0/42858b26cafdaa69b6149f45dfc2894007bc2c7a/collection-1.0.0.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/182c88535578324a16c079359473203f/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/17649ff88e171489e754a5ff57709583/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/49af8f660976188acaa5231b3116f654/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/ed30de3503fa5e5f9d03c5a171521dd7/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/1798572a206998fd6fde7441f324d138/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/1409414d1759d72380747662b8d3ca7e/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/17ac0e1e58d1a9b5436b85935a843ed7/jars/classes.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/1c919c9ee7cc40a4706032106f37a98a/jars/classes.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.0.0/e070ffae07452331bc5684734fce6831d531785c/lifecycle-common-2.0.0.jar;C:/Users/Dell/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/f21b35b9cf13a5e1d50c64808dc7d5bb/jars/classes.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.0.0/bb21b9a11761451b51624ac428d1f1bb5deeac38/core-common-2.0.0.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.0.2/2f1d597d48e5309e935ce1212eedf5ae69d3f97/annotation-1.0.2.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.41/2ecf4aa059427d7186312fd1736afedf7972e7f7/kotlin-stdlib-common-1.3.41.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar;C:/Users/Dell/AndroidStudioProjects/DatingApp/signinwithapplebutton/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/generateDebugRFile/R.jar;C:/Users/Dell/AppData/Local/Android/Sdk/platforms/android-28/android.jar" />
+          <option name="classpath" value="$MODULE_DIR$/../../../signinwithapplebutton/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/6440dcdc28e022fe10f91ff85addd9ed/jetified-kotlin-android-extensions-runtime-1.3.41.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/67567bebea8db1980fccf1041a3548e5/jetified-core-ktx-1.0.2-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/abd4bf433e8157fc8fe85f5a6b17e546/jetified-kotlin-stdlib-jdk7-1.3.41.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/a9e55d86484768c371b95bdaa1993785/jetified-kotlin-stdlib-1.3.41.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/ff8bc7cd1c286191a8688fae3911310f/jetified-kotlin-stdlib-common-1.3.41.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/637d1e598d7a7802b9af5a6204f7adda/jetified-annotations-13.0.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/a3c50a9c45301770a30391d14ebfc2d9/fragment-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/723dd2355dc38dd5e96c42448560c786/legacy-support-core-ui-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/d06d35b4fea93aa717f37eb81ed2558e/legacy-support-core-utils-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/3966c2a92971684edde60b1e6c7fc3f2/loader-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/0360cdd80816d0ff5eded5f35a5c879b/viewpager-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/cb1f2e1f8e5a282b4cccdeb035af73c4/coordinatorlayout-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/dcb1a3a64ce872a3c0969b56dc62e49c/drawerlayout-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/f729f4554646e2550ca0361ff6cb5aec/slidingpanelayout-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/c3cf3ed8ca2a71486ae26002a0004260/customview-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/16b931964fcebf213d59bf85ecc0e6b1/swiperefreshlayout-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/a443a0fe324116016edd1b9a2a199ca6/asynclayoutinflater-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/05e9ce2e7001ca22bbd80049fe68edaf/core-1.0.2-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/8895091f048b7bf01163417de67462d0/lifecycle-viewmodel-2.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/d96a6361a2b28ea31d26c7863480edaf/versionedparcelable-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.0.0/42858b26cafdaa69b6149f45dfc2894007bc2c7a/collection-1.0.0.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/71b6d06d7184968b0df38ae2ad4e0ae1/lifecycle-runtime-2.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/1f35757fe5387fb126f797f77e2a7a6b/interpolator-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/5e101843632eb3779e3bf36412ddcbec/cursoradapter-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/82d62dfd4a9b2e2150839999ab994a37/documentfile-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/48696d8bd67ffd7d9d0e382a382c424b/localbroadcastmanager-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/048658f85c93df58e25cceb4f2f5738c/print-1.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/fff0bbbc85c88e7768e9474dfa68b391/lifecycle-livedata-2.0.0-api.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/426d9170a2d45a1d647ed7aba3ca0c2e/lifecycle-livedata-core-2.0.0-api.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.0.0/e070ffae07452331bc5684734fce6831d531785c/lifecycle-common-2.0.0.jar;C:/Users/Dell/.gradle/caches/transforms-2/files-2.1/764f12856e51c080129ad04b1e13a909/core-runtime-2.0.0-api.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.0.0/bb21b9a11761451b51624ac428d1f1bb5deeac38/core-common-2.0.0.jar;C:/Users/Dell/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.0.2/2f1d597d48e5309e935ce1212eedf5ae69d3f97/annotation-1.0.2.jar;C:/Users/Dell/AppData/Local/Android/Sdk/platforms/android-28/android.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="signinwithapplebutton_debug" />
@@ -65,23 +65,21 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
-    <output url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes" />
-    <output-test url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/intermediates/javac/debugUnitTest/compileDebugUnitTestJavaWithJavac/classes" />
+    <output url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../signinwithapplebutton">
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/source/apt/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/aidl_source_output_dir/debug/compileDebugAidl/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/aidl_source_output_dir/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/renderscript_source_output_dir/debug/compileDebugRenderscript/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/renderscript_source_output_dir/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/rs/debug" type="java-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/resValues/debug" type="java-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/source/apt/androidTest/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/aidl_source_output_dir/debugAndroidTest/compileDebugAndroidTestAidl/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/ap_generated_sources/debugAndroidTest/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/aidl_source_output_dir/debugAndroidTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/source/buildConfig/androidTest/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/renderscript_source_output_dir/debugAndroidTest/compileDebugAndroidTestRenderscript/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/renderscript_source_output_dir/debugAndroidTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/rs/androidTest/debug" type="java-test-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/res/resValues/androidTest/debug" type="java-test-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/source/apt/test/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/build/generated/ap_generated_sources/debugUnitTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/src/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/src/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../signinwithapplebutton/src/debug/assets" type="java-resource" />
@@ -129,20 +127,22 @@
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-integration:1.3@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup:javawriter:2.1.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-integration:1.3@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-core:3.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:runner:1.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:monitor:1.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-idling-resource:3.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-junit:1.3.41@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:robolectric:4.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test:1.3.41@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-common:1.3.41@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-annotations-common:1.3.41@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:robolectric:4.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:shadows-framework:4.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:junit:4.3@jar" level="project" />
@@ -153,23 +153,8 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:pluginapi:4.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:shadowapi:4.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:annotations:4.3@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:utils-reflector:4.3@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: javax.annotation:javax.annotation-api:1.3.2@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.52@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-common:1.3.41@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-annotations-common:1.3.41@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.maven:maven-ant-tasks:2.1.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.ant:ant:1.8.0@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.auto.service:auto-service:1.0-rc4@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.auto:auto-common:0.8@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:27.0.1-jre@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-commons:7.0@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-util:7.0@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-analysis:7.0@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-tree:7.0@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm:7.0@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.almworks.sqlite4java:sqlite4java:0.282@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.ibm.icu:icu4j:53.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.ant:ant-launcher:1.8.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.maven:maven-project:2.2.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.maven:maven-artifact-manager:2.2.1@jar" level="project" />
@@ -188,6 +173,18 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.maven:maven-repository-metadata:2.2.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.plexus:plexus-utils:1.5.15@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.plexus:plexus-interpolation:1.11@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: backport-util-concurrent:backport-util-concurrent:3.1@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: nekohtml:xercesMinimal:1.9.6.2@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: nekohtml:nekohtml:1.9.6.2@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.robolectric:utils-reflector:4.3@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-commons:7.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-util:7.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-analysis:7.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-tree:7.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm:7.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.auto.service:auto-service:1.0-rc4@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.auto:auto-common:0.8@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:27.0.1-jre@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:failureaccess:1.0.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:3.0.2@jar" level="project" />
@@ -195,21 +192,22 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.errorprone:error_prone_annotations:2.2.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.j2objc:j2objc-annotations:1.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.17@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.annotation:javax.annotation-api:1.3.2@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.almworks.sqlite4java:sqlite4java:0.282@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.ibm.icu:icu4j:53.1@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.protobuf:protobuf-java:2.6.1@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: backport-util-concurrent:backport-util-concurrent:3.1@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: nekohtml:xercesMinimal:1.9.6.2@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: nekohtml:nekohtml:1.9.6.2@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.52@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.ext:junit:1.1.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:core:1.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.3.41@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.41@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.41@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.41@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.0.2@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.41@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.core:core-ktx:1.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-ui:1.0.0@aar" level="project" />

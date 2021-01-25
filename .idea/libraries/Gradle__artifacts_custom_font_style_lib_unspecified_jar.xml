@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: artifacts:custom-font-style-lib:unspecified@jar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/custom-font-style-lib-release.aar/c359c9eaadb41c428e1663d37844290c/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/custom-font-style-lib-release.aar/c359c9eaadb41c428e1663d37844290c/res" />
+      <root url="jar://$PROJECT_DIR$/custom-font-style-lib/build/.transforms/25ba962a0cfe3b51a05b818568a35a3d/jetified-custom-font-style-lib-release/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/custom-font-style-lib/build/.transforms/25ba962a0cfe3b51a05b818568a35a3d/jetified-custom-font-style-lib-release/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

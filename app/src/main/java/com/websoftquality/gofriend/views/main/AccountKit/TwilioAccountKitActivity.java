@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -482,6 +483,7 @@ public class TwilioAccountKitActivity extends AppCompatActivity implements Servi
                 if (jsonResp.isSuccess()) {
                     receivedOTPFromServer = (String) commonMethods.getJsonValue(jsonResp.getStrResponse(), "otp", String.class);
                     showOTPfield();
+                    Toast.makeText(this, receivedOTPFromServer, Toast.LENGTH_SHORT).show();
                     //setOtp();
 
                 } else if (!TextUtils.isEmpty(jsonResp.getStatusMsg())) {

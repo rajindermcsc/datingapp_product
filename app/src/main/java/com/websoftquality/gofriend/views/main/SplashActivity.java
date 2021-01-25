@@ -8,12 +8,18 @@ package com.websoftquality.gofriend.views.main;
  **/
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
 
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
+import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
@@ -21,25 +27,85 @@ import org.json.JSONObject;
 
 import javax.inject.Inject;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.facebook.login.LoginManager;
+import com.google.gson.Gson;
 import com.websoftquality.gofriend.R;
 import com.websoftquality.gofriend.configs.AppController;
+import com.websoftquality.gofriend.configs.Constants;
+import com.websoftquality.gofriend.configs.RunTimePermission;
 import com.websoftquality.gofriend.configs.SessionManager;
+import com.websoftquality.gofriend.datamodels.main.AppSiteModel;
+import com.websoftquality.gofriend.datamodels.main.ImageListModel;
+import com.websoftquality.gofriend.datamodels.main.JsonResponse;
+import com.websoftquality.gofriend.datamodels.main.SliderModel;
+import com.websoftquality.gofriend.interfaces.ApiService;
+import com.websoftquality.gofriend.interfaces.ServiceListener;
+import com.websoftquality.gofriend.utils.CommonMethods;
+import com.websoftquality.gofriend.utils.RequestCallback;
 import com.websoftquality.gofriend.views.chat.ChatConversationActivity;
+import com.websoftquality.gofriend.views.customize.CustomDialog;
+import com.websoftquality.gofriend.views.signup.SignUpActivity;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+
+import static com.websoftquality.gofriend.utils.Enums.REQ_FB_SIGNUP;
+import static com.websoftquality.gofriend.utils.Enums.REQ_GET_LOGIN_SLIDER;
 
 /*****************************************************************
  Application splash screen
  ****************************************************************/
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements ServiceListener {
 
+    private static final String TAG = "SplashActivity";
     @Inject
     SessionManager sessionManager;
+    private ArrayList<ImageListModel> imageList = new ArrayList<>();
+    private ArrayList<AppSiteModel> appdata = new ArrayList<>();
+    @Inject
+    CommonMethods commonMethods;
+    @Inject
+    RunTimePermission runTimePermission;
+    @Inject
+    CustomDialog customDialog;
+    @Inject
+    ApiService apiService;
+    private AlertDialog dialog;
+    @Inject
+    Gson gson;
+    ImageView iv_logo;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         AppController.getAppComponent().inject(this);
-        getIntentValues();
+        iv_logo=findViewById(R.id.iv_logo);
+        dialog = commonMethods.getAlertDialog(this);
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String hashKey = new String(Base64.encode(md.digest(), 0));
+                Log.i(TAG, "printHashKey() Hash Key: " + hashKey);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            Log.e(TAG, "printHashKey()", e);
+        } catch (Exception e) {
+            Log.e(TAG, "printHashKey()", e);
+        }
+        getSliderImageList();
+    }
+
+    private void getSliderImageList() {
+        commonMethods.showProgressDialog(SplashActivity.this, customDialog);
+        apiService.getTutorialSliderImg().enqueue(new RequestCallback(REQ_GET_LOGIN_SLIDER, this));
     }
 
     private void getIntentValues() {
@@ -60,6 +126,59 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void onSuccess(JsonResponse jsonResp, String data) {
+        commonMethods.hideProgressDialog();
+        if (!jsonResp.isOnline()) {
+            commonMethods.showMessage(SplashActivity.this, dialog, data);
+            return;
+        }
+        String statusCode = (String) commonMethods.getJsonValue(jsonResp.getStrResponse(), "status_code", String.class);
+        if (jsonResp.getRequestCode() == REQ_GET_LOGIN_SLIDER && jsonResp.isSuccess()) {
+            onSuccessGetSliderImg(jsonResp);
+        } else {
+            commonMethods.showMessage(SplashActivity.this, dialog, jsonResp.getStatusMsg());
+        }
+    }
+
+    private void onSuccessGetSliderImg(JsonResponse jsonResp) {
+        SliderModel sliderModel = gson.fromJson(jsonResp.getStrResponse(), SliderModel.class);
+        sessionManager.setMinAge(sliderModel.getMinimumAge());
+        sessionManager.setMaxAge(sliderModel.getMaximumAge());
+        if (sliderModel != null && sliderModel.getImageList() != null && sliderModel.getImageList().size() > 0) {
+            imageList.clear();
+            imageList.addAll(sliderModel.getImageList());
+        }
+
+        if (sliderModel != null && sliderModel.getAppDataList() != null && sliderModel.getAppDataList().size() > 0) {
+            appdata.clear();
+            appdata.addAll(sliderModel.getAppDataList());
+        }
+
+        for (int i=0;i<appdata.size();i++){
+            if (appdata.get(i).getName().equalsIgnoreCase("logo_web_1")){
+                Log.e(TAG, "onSuccessGetSliderImg: "+"https://websoftquality.com/dating/public/logos/"+appdata.get(i).getValue());
+                Glide.with(this)
+                        .load("https://websoftquality.com/dating/public/logos/"+appdata.get(i).getValue())
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(iv_logo);
+            }
+
+        }
+
+
+        getIntentValues();
+        Log.e(TAG, "onSuccessGetSliderImg: "+imageList);
+
+    }
+
+    @Override
+    public void onFailure(JsonResponse jsonResp, String data) {
+        commonMethods.hideProgressDialog();
+        if (!jsonResp.isOnline()) commonMethods.showMessage(SplashActivity.this, dialog, data);
     }
 
     private void callActivityIntent() {

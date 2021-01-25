@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!DOCTYPE resources [<!ENTITY appname "GoFriend">]>
+<!DOCTYPE resources [<!ENTITY appname "Godly EETS">]>
 
 <resources>
     <string name="app_name">&appname;</string>
@@ -12,16 +12,20 @@
     <string name="redirect_url">"https://websoftquality.com/dating/public/"</string>
     <string name="apple_redirect_url">"https://websoftquality.com/dating/public/api/apple_callback"</string>
 
-<!--    <string name="base_url">"http://websoftquality.com/public/api/"</string>-->
-<!--    <string name="share_url">"http://websoftquality.com/public/admin/login"</string>-->
-<!--    <string name="redirect_url">"http://websoftquality.com/public/"</string>-->
-<!--    <string name="apple_redirect_url">"http://websoftquality.com/public/api/apple_callback"</string>-->
+
+    <string name="No_INTERNET_CONNECTION">No Internet Connection</string>
+    <string name="timeouterror">Timeout Please Retry</string>
+    <string name="defaulterror">Something wrong Please Retry</string>
+
+    <!--    <string name="base_url">"http://websoftquality.com/public/api/"</string>-->
+    <!--    <string name="share_url">"http://websoftquality.com/public/admin/login"</string>-->
+    <!--    <string name="redirect_url">"http://websoftquality.com/public/"</string>-->
+    <!--    <string name="apple_redirect_url">"http://websoftquality.com/public/api/apple_callback"</string>-->
 
     <!-- Facebook User -->
     <string name="ACCOUNT_KIT_CLIENT_TOKEN" translatable="false">e0696b8fe5c76dbc50d0b284eb21d3b9</string>
-    <string name="facebook_app_id">1670124539805970</string>
-    <string name="fb_login_protocol_scheme">fb1670124539805970</string>
-
+    <string name="facebook_app_id">434595884257106</string>
+    <string name="fb_login_protocol_scheme">fb434595884257106</string>
 
 
     <!-- Google map and place API key -->
@@ -37,8 +41,6 @@
     <string name="help_url">"contacts"</string>
     <string name="privacy_url">"page/privacy_policy"</string>
     <string name="terms_url">"page/terms_of_use"</string>
-
-
 
 
     <!--In App Purchase Plan id from Google Play Console-->
@@ -561,6 +563,7 @@
     <string name="super_liked">Super Liked</string>
     <string name="save">Save&#160;</string>
     <string name="total">Total&#160;:&#160;</string>
+    <string name="button_ok">Ok</string>
 
     <string-array name="QUICK_MENU_TITLE">
         <item>Unmatch</item>

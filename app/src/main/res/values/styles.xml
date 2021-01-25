@@ -26,6 +26,11 @@
         <item name="colorControlHighlight">@color/gray_border</item>
     </style>
 
+    <style name="animationName" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_uptoast</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
     </style>

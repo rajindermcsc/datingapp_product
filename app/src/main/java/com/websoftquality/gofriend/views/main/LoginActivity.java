@@ -145,25 +145,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * objectCreation method is used to create all objects.
      */
     private void initView() {
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        pageIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        viewPager = findViewById(R.id.viewpager);
+        pageIndicator = findViewById(R.id.indicator);
 
-        tvLoginFb = (CustomTextView) findViewById(R.id.tv_login_facebook);
-        tvLoginPhone = (CustomTextView) findViewById(R.id.tv_login_phone);
+        tvLoginFb = findViewById(R.id.tv_login_facebook);
+        tvLoginPhone = findViewById(R.id.tv_login_phone);
 
-        tvArrowBottom = (CustomTextView) findViewById(R.id.tv_arrow_bottom);
-        tvArrowTop = (CustomTextView) findViewById(R.id.tv_arrow_top);
-        tvTermsPolicy = (CustomTextView) findViewById(R.id.tv_terms_condition);
-       /* tvTakePolicy = (CustomTextView) findViewById(R.id.tv_take_policy);
+        tvArrowBottom = findViewById(R.id.tv_arrow_bottom);
+        tvArrowTop = findViewById(R.id.tv_arrow_top);
+        tvTermsPolicy = findViewById(R.id.tv_terms_condition);
 
-        tvLocationMsg = (CustomTextView) findViewById(R.id.tv_location_not_shown);
-        tvDotNotPostFb = (CustomTextView) findViewById(R.id.tv_do_not_fb);*/
-
-        rltTutorial = (RelativeLayout) findViewById(R.id.rlt_tutorial);
-        lltLoginBottom = (LinearLayout) findViewById(R.id.llt_login_bottom);
-        arrow_bottom = (LinearLayout) findViewById(R.id.arrow_bottom);
-        signup_less = (LinearLayout) findViewById(R.id.signup_less);
-        signup_more = (LinearLayout) findViewById(R.id.signup_more);
+        rltTutorial = findViewById(R.id.rlt_tutorial);
+        lltLoginBottom = findViewById(R.id.llt_login_bottom);
+        arrow_bottom = findViewById(R.id.arrow_bottom);
+        signup_less = findViewById(R.id.signup_less);
+        signup_more = findViewById(R.id.signup_more);
         btnapplelogin = findViewById(R.id.btnapplelogin);
         dialog = commonMethods.getAlertDialog(this);
 

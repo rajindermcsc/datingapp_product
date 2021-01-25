@@ -86,6 +86,10 @@
 
     <color name="places_green">#33cb8b</color>
     <color name="premium_blue">#298bf9</color>
+    <color name="pink_color">#e414fb</color>
+    <color name="light_gray_color">#f1f9ff</color>
+    <color name="yellow_color">#ffe182</color>
+    <color name="cyan_color">#08d3df</color>
 
 
     <color name="red2">#ff0000</color>

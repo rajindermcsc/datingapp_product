@@ -30,9 +30,9 @@ public class IabResult {
     public IabResult(int response, String message) {
         mResponse = response;
         if (message == null || message.trim().length() == 0) {
-            mMessage = IabHelper.getResponseDesc(response);
+//            mMessage = IabHelper.getResponseDesc(response);
         } else {
-            mMessage = message + " (response: " + IabHelper.getResponseDesc(response) + ")";
+//            mMessage = message + " (response: " + IabHelper.getResponseDesc(response) + ")";
         }
     }
 
@@ -44,13 +44,13 @@ public class IabResult {
         return mMessage;
     }
 
-    public boolean isSuccess() {
-        return mResponse == IabHelper.BILLING_RESPONSE_RESULT_OK;
-    }
+//    public boolean isSuccess() {
+//        return mResponse == IabHelper.BILLING_RESPONSE_RESULT_OK;
+//    }
 
-    public boolean isFailure() {
-        return !isSuccess();
-    }
+//    public boolean isFailure() {
+//        return !isSuccess();
+//    }
 
     public String toString() {
         return "IabResult: " + getMessage();

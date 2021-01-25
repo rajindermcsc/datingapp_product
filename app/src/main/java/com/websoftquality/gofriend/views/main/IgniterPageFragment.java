@@ -64,7 +64,7 @@ import com.websoftquality.gofriend.datamodels.main.UserDetailModel;
 import com.websoftquality.gofriend.datamodels.matches.MatchesResponse;
 import com.websoftquality.gofriend.datamodels.matches.MatchingProfile;
 import com.websoftquality.gofriend.iaputils.IabBroadcastReceiver;
-import com.websoftquality.gofriend.iaputils.IabHelper;
+//import com.websoftquality.gofriend.iaputils.IabHelper;
 import com.websoftquality.gofriend.iaputils.IabResult;
 import com.websoftquality.gofriend.iaputils.Inventory;
 import com.websoftquality.gofriend.iaputils.Purchase;
@@ -131,7 +131,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
     String remainingBoostHours, remainingBoostDay;
     boolean rewind = false;
     // The helper object
-    IabHelper mHelper;
+//    IabHelper mHelper;
     // Provides purchase notification while this app is running
     IabBroadcastReceiver mBroadcastReceiver;
     String payload = "";
@@ -148,129 +148,129 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
     Purchase IP1, IP6, IP12;
     Inventory inventory;
     // Listener that's called when we finish querying the items and subscriptions we own
-    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-        public void onQueryInventoryFinished(IabResult result, Inventory inventorys) {
-            inventory = inventorys;
-            // Have we been disposed of in the meantime? If so, quit.
-            if (mHelper == null) return;
-
-            // Is it a failure?
-            if (result.isFailure()) {
-                complain(getString(R.string.failed_query_inv)+": " + result);
-                return;
-            }
-
-            /*
-             * Check for items we own. Notice that for each purchase, we check
-             * the developer payload to see if it's correct! See
-             * verifyDeveloperPayload().
-             */
-
-            // First find out which subscription is auto renewing
-            oneBoost = inventory.getPurchase(SKU_INFINITE_ONE_BOOST);
-            fiveBoost = inventory.getPurchase(SKU_INFINITE_FIVE_BOOST);
-            tenBoost = inventory.getPurchase(SKU_INFINITE_TEN_BOOST);
-
-            if (oneBoost != null && oneBoost.isAutoRenewing()) {
-                mInfiniteBoostSku = SKU_INFINITE_ONE_BOOST;
-                mAutoRenewEnabled = true;
-            } else if (fiveBoost != null && fiveBoost.isAutoRenewing()) {
-                mInfiniteBoostSku = SKU_INFINITE_FIVE_BOOST;
-                mAutoRenewEnabled = true;
-            } else if (tenBoost != null && tenBoost.isAutoRenewing()) {
-                mInfiniteBoostSku = SKU_INFINITE_TEN_BOOST;
-                mAutoRenewEnabled = true;
-            } else {
-                mInfiniteBoostSku = "";
-                mAutoRenewEnabled = false;
-            }
-
-            // The user is subscribed if either subscription exists, even if neither is auto
-            // renewing
-            mSubscribedToInfiniteBoost = (oneBoost != null && verifyDeveloperPayload(oneBoost))
-                    || (fiveBoost != null && verifyDeveloperPayload(fiveBoost)
-                    || (tenBoost != null && verifyDeveloperPayload(tenBoost)));
-            Log.e(TAG, "Original JSON 123 " + mSubscribedToInfiniteBoost);
-            Log.e(TAG, "User Boost" + (mSubscribedToInfiniteBoost ? "HAS" : "DOES NOT HAVE")
-                    + " infinite Boost subscription.");
-
-
-            SL5 = inventory.getPurchase(SKU_INFINITE_5_SL);
-            SL25 = inventory.getPurchase(SKU_INFINITE_25_SL);
-            SL60 = inventory.getPurchase(SKU_INFINITE_60_SL);
-
-
-            if (SL5 != null && SL5.isAutoRenewing()) {
-                mInfiniteSuperLikeSku = SKU_INFINITE_5_SL;
-                mAutoRenewEnabled = true;
-            } else if (SL25 != null && SL25.isAutoRenewing()) {
-                mInfiniteSuperLikeSku = SKU_INFINITE_25_SL;
-                mAutoRenewEnabled = true;
-            } else if (SL60 != null && SL60.isAutoRenewing()) {
-                mInfiniteSuperLikeSku = SKU_INFINITE_60_SL;
-                mAutoRenewEnabled = true;
-            } else {
-                mInfiniteSuperLikeSku = "";
-                mAutoRenewEnabled = false;
-            }
-
-
-            IP1 = inventory.getPurchase(SKU_INFINITE_1_IP);
-            IP6 = inventory.getPurchase(SKU_INFINITE_6_IP);
-            IP12 = inventory.getPurchase(SKU_INFINITE_12_IP);
-
-            if (IP1 != null && IP1.isAutoRenewing()) {
-                mInfinitePlusSku = SKU_INFINITE_1_IP;
-                mAutoRenewEnabled = true;
-            } else if (IP6 != null && IP6.isAutoRenewing()) {
-                mInfinitePlusSku = SKU_INFINITE_6_IP;
-                mAutoRenewEnabled = true;
-            } else if (IP12 != null && IP12.isAutoRenewing()) {
-                mInfinitePlusSku = SKU_INFINITE_12_IP;
-                mAutoRenewEnabled = true;
-            } else {
-                mInfinitePlusSku = "";
-                mAutoRenewEnabled = false;
-            }
-
-            // The user is subscribed if either subscription exists, even if neither is auto
-            // renewing
-            mSubscribedToInfiniteSuperLike = (SL5 != null && verifyDeveloperPayload(SL5))
-                    || (SL25 != null && verifyDeveloperPayload(SL25)
-                    || (SL60 != null && verifyDeveloperPayload(SL60)));
-
-            mSubscribedToPlus = (IP1 != null && verifyDeveloperPayload(IP1))
-                    || (IP6 != null && verifyDeveloperPayload(IP6)
-                    || (IP12 != null && verifyDeveloperPayload(IP12)));
-        }
-    };
-    // Called when consumption is complete
-    IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
-        public void onConsumeFinished(Purchase purchase, IabResult result) {
-            Log.e(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
-
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
-
-            // We know this is the "gas" sku because it's the only one we consume,
-            // so we don't check which sku was consumed. If you have more than one
-            // sku, you probably should check...
-            if (result.isSuccess()) {
-                // successfully consumed, so we apply the effects of the item in our
-                // game world's logic, which in our case means filling the gas tank a bit
-                Log.e(TAG, "Consumption successful. Provisioning.");
-                mSubscribedToInfiniteBoost = false;
-                mSubscribedToInfiniteSuperLike = false;
-                mSubscribedToPlus = false;
-
-                //alert("You filled 1/4 tank. Your tank is now " + String.valueOf(mTank) + "/4 full!");
-            } else {
-                complain(mActivity.getString(R.string.er_consume)+": " + result);
-            }
-
-            Log.e(TAG, "End consumption flow.");
-        }
-    };
+//    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
+//        public void onQueryInventoryFinished(IabResult result, Inventory inventorys) {
+//            inventory = inventorys;
+//            // Have we been disposed of in the meantime? If so, quit.
+//            if (mHelper == null) return;
+//
+//            // Is it a failure?
+//            if (result.isFailure()) {
+//                complain(getString(R.string.failed_query_inv)+": " + result);
+//                return;
+//            }
+//
+//            /*
+//             * Check for items we own. Notice that for each purchase, we check
+//             * the developer payload to see if it's correct! See
+//             * verifyDeveloperPayload().
+//             */
+//
+//            // First find out which subscription is auto renewing
+//            oneBoost = inventory.getPurchase(SKU_INFINITE_ONE_BOOST);
+//            fiveBoost = inventory.getPurchase(SKU_INFINITE_FIVE_BOOST);
+//            tenBoost = inventory.getPurchase(SKU_INFINITE_TEN_BOOST);
+//
+//            if (oneBoost != null && oneBoost.isAutoRenewing()) {
+//                mInfiniteBoostSku = SKU_INFINITE_ONE_BOOST;
+//                mAutoRenewEnabled = true;
+//            } else if (fiveBoost != null && fiveBoost.isAutoRenewing()) {
+//                mInfiniteBoostSku = SKU_INFINITE_FIVE_BOOST;
+//                mAutoRenewEnabled = true;
+//            } else if (tenBoost != null && tenBoost.isAutoRenewing()) {
+//                mInfiniteBoostSku = SKU_INFINITE_TEN_BOOST;
+//                mAutoRenewEnabled = true;
+//            } else {
+//                mInfiniteBoostSku = "";
+//                mAutoRenewEnabled = false;
+//            }
+//
+//            // The user is subscribed if either subscription exists, even if neither is auto
+//            // renewing
+//            mSubscribedToInfiniteBoost = (oneBoost != null && verifyDeveloperPayload(oneBoost))
+//                    || (fiveBoost != null && verifyDeveloperPayload(fiveBoost)
+//                    || (tenBoost != null && verifyDeveloperPayload(tenBoost)));
+//            Log.e(TAG, "Original JSON 123 " + mSubscribedToInfiniteBoost);
+//            Log.e(TAG, "User Boost" + (mSubscribedToInfiniteBoost ? "HAS" : "DOES NOT HAVE")
+//                    + " infinite Boost subscription.");
+//
+//
+//            SL5 = inventory.getPurchase(SKU_INFINITE_5_SL);
+//            SL25 = inventory.getPurchase(SKU_INFINITE_25_SL);
+//            SL60 = inventory.getPurchase(SKU_INFINITE_60_SL);
+//
+//
+//            if (SL5 != null && SL5.isAutoRenewing()) {
+//                mInfiniteSuperLikeSku = SKU_INFINITE_5_SL;
+//                mAutoRenewEnabled = true;
+//            } else if (SL25 != null && SL25.isAutoRenewing()) {
+//                mInfiniteSuperLikeSku = SKU_INFINITE_25_SL;
+//                mAutoRenewEnabled = true;
+//            } else if (SL60 != null && SL60.isAutoRenewing()) {
+//                mInfiniteSuperLikeSku = SKU_INFINITE_60_SL;
+//                mAutoRenewEnabled = true;
+//            } else {
+//                mInfiniteSuperLikeSku = "";
+//                mAutoRenewEnabled = false;
+//            }
+//
+//
+//            IP1 = inventory.getPurchase(SKU_INFINITE_1_IP);
+//            IP6 = inventory.getPurchase(SKU_INFINITE_6_IP);
+//            IP12 = inventory.getPurchase(SKU_INFINITE_12_IP);
+//
+//            if (IP1 != null && IP1.isAutoRenewing()) {
+//                mInfinitePlusSku = SKU_INFINITE_1_IP;
+//                mAutoRenewEnabled = true;
+//            } else if (IP6 != null && IP6.isAutoRenewing()) {
+//                mInfinitePlusSku = SKU_INFINITE_6_IP;
+//                mAutoRenewEnabled = true;
+//            } else if (IP12 != null && IP12.isAutoRenewing()) {
+//                mInfinitePlusSku = SKU_INFINITE_12_IP;
+//                mAutoRenewEnabled = true;
+//            } else {
+//                mInfinitePlusSku = "";
+//                mAutoRenewEnabled = false;
+//            }
+//
+//            // The user is subscribed if either subscription exists, even if neither is auto
+//            // renewing
+//            mSubscribedToInfiniteSuperLike = (SL5 != null && verifyDeveloperPayload(SL5))
+//                    || (SL25 != null && verifyDeveloperPayload(SL25)
+//                    || (SL60 != null && verifyDeveloperPayload(SL60)));
+//
+//            mSubscribedToPlus = (IP1 != null && verifyDeveloperPayload(IP1))
+//                    || (IP6 != null && verifyDeveloperPayload(IP6)
+//                    || (IP12 != null && verifyDeveloperPayload(IP12)));
+//        }
+//    };
+//    // Called when consumption is complete
+//    IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
+//        public void onConsumeFinished(Purchase purchase, IabResult result) {
+//            Log.e(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
+//
+//            // if we were disposed of in the meantime, quit.
+//            if (mHelper == null) return;
+//
+//            // We know this is the "gas" sku because it's the only one we consume,
+//            // so we don't check which sku was consumed. If you have more than one
+//            // sku, you probably should check...
+//            if (result.isSuccess()) {
+//                // successfully consumed, so we apply the effects of the item in our
+//                // game world's logic, which in our case means filling the gas tank a bit
+//                Log.e(TAG, "Consumption successful. Provisioning.");
+//                mSubscribedToInfiniteBoost = false;
+//                mSubscribedToInfiniteSuperLike = false;
+//                mSubscribedToPlus = false;
+//
+//                //alert("You filled 1/4 tank. Your tank is now " + String.valueOf(mTank) + "/4 full!");
+//            } else {
+//                complain(mActivity.getString(R.string.er_consume)+": " + result);
+//            }
+//
+//            Log.e(TAG, "End consumption flow.");
+//        }
+//    };
     private View view;
     private ActivityListener listener;
     private Resources res;
@@ -1537,47 +1537,47 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
 
         // Create the helper, passing it our context and the public key to verify signatures with
         Log.e(TAG, "Creating IAB helper.");
-        mHelper = new IabHelper(getContext(), base64EncodedPublicKey);
+//        mHelper = new IabHelper(getContext(), base64EncodedPublicKey);
 
         // enable debug logging (for a production application, you should set this to false).
-        mHelper.enableDebugLogging(true);
+//        mHelper.enableDebugLogging(true);
 
         // Start setup. This is asynchronous and the specified listener
         // will be called once setup completes.
         Log.e(TAG, "Starting setup.");
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
-                Log.e(TAG, "Setup finished.");
-
-                if (!result.isSuccess()) {
-                    // Oh noes, there was a problem.
-                    complain(getString(R.string.pbm_inapp_set)+": " + result);
-                    return;
-                }
-
-                // Have we been disposed of in the meantime? If so, quit.
-                if (mHelper == null) return;
-
-                // Important: Dynamically register for broadcast messages about updated purchases.
-                // We register the receiver here instead of as a <receiver> in the Manifest
-                // because we always call getPurchases() at startup, so therefore we can ignore
-                // any broadcasts sent while the app isn't running.
-                // Note: registering this listener in an Activity is a bad idea, but is done here
-                // because this is a SAMPLE. Regardless, the receiver must be registered after
-                // IabHelper is setup, but before first call to getPurchases().
-                mBroadcastReceiver = new IabBroadcastReceiver(IgniterPageFragment.this);
-                IntentFilter broadcastFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
-                mActivity.registerReceiver(mBroadcastReceiver, broadcastFilter);
-
-                // IAB is fully set up. Now, let's get an inventory of stuff we own.
-                Log.e(TAG, "Setup successful. Querying inventory.");
-                try {
-                    mHelper.queryInventoryAsync(mGotInventoryListener);
-                } catch (IabHelper.IabAsyncInProgressException e) {
-                    complain(getString(R.string.er_query_inventry));
-                }
-            }
-        });
+//        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+//            public void onIabSetupFinished(IabResult result) {
+//                Log.e(TAG, "Setup finished.");
+//
+//                if (!result.isSuccess()) {
+//                    // Oh noes, there was a problem.
+//                    complain(getString(R.string.pbm_inapp_set)+": " + result);
+//                    return;
+//                }
+//
+//                // Have we been disposed of in the meantime? If so, quit.
+////                if (mHelper == null) return;
+//
+//                // Important: Dynamically register for broadcast messages about updated purchases.
+//                // We register the receiver here instead of as a <receiver> in the Manifest
+//                // because we always call getPurchases() at startup, so therefore we can ignore
+//                // any broadcasts sent while the app isn't running.
+//                // Note: registering this listener in an Activity is a bad idea, but is done here
+//                // because this is a SAMPLE. Regardless, the receiver must be registered after
+//                // IabHelper is setup, but before first call to getPurchases().
+//                mBroadcastReceiver = new IabBroadcastReceiver(IgniterPageFragment.this);
+//                IntentFilter broadcastFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
+//                mActivity.registerReceiver(mBroadcastReceiver, broadcastFilter);
+//
+//                // IAB is fully set up. Now, let's get an inventory of stuff we own.
+//                Log.e(TAG, "Setup successful. Querying inventory.");
+////                try {
+////                    mHelper.queryInventoryAsync(mGotInventoryListener);
+////                } catch (IabHelper.IabAsyncInProgressException e) {
+////                    complain(getString(R.string.er_query_inventry));
+////                }
+//            }
+//        });
     }
 
     /**
@@ -1587,12 +1587,12 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
     public void receivedBroadcast() {
         // Received a broadcast notification that the inventory of items has changed
         Log.d("Boost Dialog", "Received broadcast notification. Querying inventory.");
-        try {
-            mHelper.queryInventoryAsync(mGotInventoryListener);
-        } catch (IabHelper.IabAsyncInProgressException e) {
-            complain(getString(R.string.er_query_inventry));
-
-        }
+//        try {
+////            mHelper.queryInventoryAsync(mGotInventoryListener);
+//        } catch (IabHelper.IabAsyncInProgressException e) {
+//            complain(getString(R.string.er_query_inventry));
+//
+//        }
     }
 
     /**
@@ -1659,10 +1659,10 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
 
         // very important:
         Log.d(TAG, "Destroying helper.");
-        if (mHelper != null) {
-            mHelper.disposeWhenFinished();
-            mHelper = null;
-        }
+//        if (mHelper != null) {
+//            mHelper.disposeWhenFinished();
+//            mHelper = null;
+//        }
 
         // very important:
         if (mBroadcastReceiver != null) {
@@ -1678,11 +1678,11 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
         Purchase BoostPurchase = inventory.getPurchase(plan);
         if (BoostPurchase != null && verifyDeveloperPayload(BoostPurchase)) {
             Log.e(TAG, "We have Boost. Consuming it.");
-            try {
-                mHelper.consumeAsync(BoostPurchase, mConsumeFinishedListener);
-            } catch (IabHelper.IabAsyncInProgressException e) {
-                complain(getString(R.string.er_consume_boost));
-            }
+//            try {
+//                mHelper.consumeAsync(BoostPurchase, mConsumeFinishedListener);
+//            } catch (IabHelper.IabAsyncInProgressException e) {
+//                complain(getString(R.string.er_consume_boost));
+//            }
             return;
         }
         Log.e(TAG, "Initial inventory query finished; enabling main UI.");

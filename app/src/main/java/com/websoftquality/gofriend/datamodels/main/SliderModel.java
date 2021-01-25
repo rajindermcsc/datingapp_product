@@ -33,6 +33,10 @@ public class SliderModel {
     @Expose
     private ArrayList<ImageListModel> imageList = new ArrayList<>();
 
+    @SerializedName("app_site_data")
+    @Expose
+    private ArrayList<AppSiteModel> appDataList = new ArrayList<>();
+
     @SerializedName("igniter_plus_sliders")
     @Expose
     private ArrayList<ImageListModel> igniterPlusImgList = new ArrayList<>();
@@ -78,6 +82,14 @@ public class SliderModel {
 
     public void setImageList(ArrayList<ImageListModel> imageList) {
         this.imageList = imageList;
+    }
+
+    public ArrayList<AppSiteModel> getAppDataList() {
+        return appDataList;
+    }
+
+    public void setAppDataList(ArrayList<AppSiteModel> appDataList) {
+        this.appDataList = appDataList;
     }
 
     public ArrayList<ImageListModel> getIgniterPlusImgList() {
