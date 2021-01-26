@@ -288,6 +288,8 @@
 
             <include layout="@layout/app_settings" />
 
+            <include layout="@layout/other_settings" />
+
             <com.obs.CustomTextView
                 style="@style/proximanova_bold"
                 android:layout_width="match_parent"

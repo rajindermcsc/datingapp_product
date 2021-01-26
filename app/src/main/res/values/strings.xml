@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!DOCTYPE resources [<!ENTITY appname "Godly EETS">]>
+<!DOCTYPE resources [<!ENTITY appname "Godly Meets">]>
 
 <resources>
     <string name="app_name">&appname;</string>
@@ -564,6 +564,13 @@
     <string name="save">Save&#160;</string>
     <string name="total">Total&#160;:&#160;</string>
     <string name="button_ok">Ok</string>
+    <string name="other_setting">Other Settings</string>
+    <string name="divorced">Divorced</string>
+    <string name="race">Race</string>
+    <string name="religion">Religion</string>
+    <string name="no_of_kids_you_want">No of kids you want?</string>
+    <string name="education">Education</string>
+    <string name="never_married">Never Married</string>
 
     <string-array name="QUICK_MENU_TITLE">
         <item>Unmatch</item>
