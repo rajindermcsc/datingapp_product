@@ -7,6 +7,7 @@ package com.websoftquality.gofriend.views.main;
  * @version 1.0
  **/
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
@@ -69,6 +71,7 @@ public class IgniterGoldActivity extends AppCompatActivity implements View.OnCli
     private CustomTextView tvPerYear, tvPerSixMonth, tvPerOneMonth;
     private CustomTextView tvYearPrice, tvSixMonthPrice, tvOneMonthPrice;
     private RelativeLayout rltTwelveMonth, rltSixMonth, rltOneMonth;
+    Button btn_continue;
     private AlertDialog dialog;
     private ArrayList<ImageListModel> imageList = new ArrayList<>();
     private Handler handler;
@@ -94,37 +97,39 @@ public class IgniterGoldActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initView() {
-        viewPager = (ViewPager) findViewById(R.id.vp_igniter_plus);
-        pageIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        viewPager = findViewById(R.id.vp_igniter_plus);
+        pageIndicator = findViewById(R.id.indicator);
+        btn_continue = findViewById(R.id.btn_continue);
 
         dialog = commonMethods.getAlertDialog(this);
 
-        rlt_tutorial = (RelativeLayout) findViewById(R.id.rlt_tutorial);
+        rlt_tutorial = findViewById(R.id.rlt_tutorial);
 
-        lltOneMonth = (RelativeLayout) findViewById(R.id.llt_one_month);
-        lltSixMonth = (RelativeLayout) findViewById(R.id.llt_six_month);
-        lltTwelveMonth = (RelativeLayout) findViewById(R.id.llt_twelve_month);
+        lltOneMonth = findViewById(R.id.llt_one_month);
+        lltSixMonth = findViewById(R.id.llt_six_month);
+        lltTwelveMonth = findViewById(R.id.llt_twelve_month);
 
-        rltOneMonth = (RelativeLayout) findViewById(R.id.rlt_one_month);
-        rltSixMonth = (RelativeLayout) findViewById(R.id.rlt_six_month);
-        rltTwelveMonth = (RelativeLayout) findViewById(R.id.rlt_twelve_month);
+        rltOneMonth = findViewById(R.id.rlt_one_month);
+        rltSixMonth = findViewById(R.id.rlt_six_month);
+        rltTwelveMonth = findViewById(R.id.rlt_twelve_month);
 
-        tvOneMonth = (CustomTextView) findViewById(R.id.tv_one_month);
-        tvSixMonth = (CustomTextView) findViewById(R.id.tv_six_month);
-        tvTwelveMonth = (CustomTextView) findViewById(R.id.tv_twelve_month);
+        tvOneMonth = findViewById(R.id.tv_one_month);
+        tvSixMonth = findViewById(R.id.tv_six_month);
+        tvTwelveMonth = findViewById(R.id.tv_twelve_month);
 
-        tvOneMonthPrice = (CustomTextView) findViewById(R.id.tv_month_price);
-        tvSixMonthPrice = (CustomTextView) findViewById(R.id.tv_six_month_price);
-        tvYearPrice = (CustomTextView) findViewById(R.id.tv_year_price);
+        tvOneMonthPrice = findViewById(R.id.tv_month_price);
+        tvSixMonthPrice = findViewById(R.id.tv_six_month_price);
+        tvYearPrice = findViewById(R.id.tv_year_price);
 
-        tvPerOneMonth = (CustomTextView) findViewById(R.id.tv_per_month);
-        tvPerSixMonth = (CustomTextView) findViewById(R.id.tv_per_six_month);
-        tvPerYear = (CustomTextView) findViewById(R.id.tv_per_year);
+        tvPerOneMonth = findViewById(R.id.tv_per_month);
+        tvPerSixMonth = findViewById(R.id.tv_per_six_month);
+        tvPerYear = findViewById(R.id.tv_per_year);
 
-        tvSixMonthSave = (CustomTextView) findViewById(R.id.tv_six_month_save);
-        tvTwelveMonthSave = (CustomTextView) findViewById(R.id.tv_one_year_save);
-        tvSixMonthBook = (CustomTextView) findViewById(R.id.tv_six_month_book);
-        tvTwelveMonthBook = (CustomTextView) findViewById(R.id.tv_one_year_book);
+        tvSixMonthSave = findViewById(R.id.tv_six_month_save);
+        tvTwelveMonthSave = findViewById(R.id.tv_one_year_save);
+        tvSixMonthBook = findViewById(R.id.tv_six_month_book);
+        tvTwelveMonthBook = findViewById(R.id.tv_one_year_book);
+        btn_continue.setOnClickListener(this);
     }
 
     private void getSliderImages() {
@@ -249,6 +254,10 @@ public class IgniterGoldActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         Animation animZoomOutIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_out_in);
         switch (v.getId()) {
+            case R.id.btn_continue:
+                Intent intent=new Intent(IgniterGoldActivity.this,StripeCardPaymentActivity.class);
+                startActivity(intent);
+                break;
             case R.id.llt_one_month:
                 changeViewBg(1);
                 changeViewColor(1);

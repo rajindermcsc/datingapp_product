@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -29,6 +30,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.obs.CustomTextView;
@@ -39,6 +42,7 @@ import java.util.HashMap;
 import javax.inject.Inject;
 
 import com.websoftquality.gofriend.R;
+import com.websoftquality.gofriend.adapters.main.QuestionsAdapter;
 import com.websoftquality.gofriend.adapters.profile.LocationListAdapter;
 import com.websoftquality.gofriend.configs.AppController;
 import com.websoftquality.gofriend.configs.SessionManager;
@@ -46,9 +50,6 @@ import com.websoftquality.gofriend.datamodels.main.JsonResponse;
 import com.websoftquality.gofriend.datamodels.main.LocationModel;
 import com.websoftquality.gofriend.datamodels.main.SettingsModel;
 import com.websoftquality.gofriend.iaputils.IabBroadcastReceiver;
-//import com.websoftquality.gofriend.iaputils.IabHelper;
-//import com.websoftquality.gofriend.iaputils.IabResult;
-//import com.websoftquality.gofriend.iaputils.Inventory;
 import com.websoftquality.gofriend.iaputils.Purchase;
 import com.websoftquality.gofriend.interfaces.ApiService;
 import com.websoftquality.gofriend.interfaces.OnRangeSeekBarChangeListener;
@@ -284,6 +285,9 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
     ArrayList<String> kids=new ArrayList<>();
     ArrayList<String> education=new ArrayList<>();
     ArrayList<String> qualification=new ArrayList<>();
+    RecyclerView rv_questions;
+    LinearLayoutManager linearLayoutManager1;
+    QuestionsAdapter questionsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -308,11 +312,6 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         race.add("White");
         race.add("Asian");
         race.add("Mixed");
-        religion.add("Christian");
-        religion.add("Catholic");
-        religion.add("Presbyterian");
-        religion.add("Methodist");
-        religion.add("Apostolic");
         kids.add("0");
         kids.add("1");
         kids.add("2");
@@ -324,6 +323,11 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         kids.add("8");
         kids.add("9");
         kids.add("10");
+        religion.add("Christian");
+        religion.add("Catholic");
+        religion.add("Presbyterian");
+        religion.add("Methodist");
+        religion.add("Apostolic");
         education.add("None");
         education.add("Elementary");
         education.add("High School");
@@ -340,22 +344,153 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         spinner_no_of_kids=findViewById(R.id.spinner_no_of_kids);
         spinner_education=findViewById(R.id.spinner_education);
         spinner_qualification=findViewById(R.id.spinner_qualification);
-
+        rv_questions=findViewById(R.id.rv_questions);
 
         customSpinnerAdapter=new CustomSpinnerAdapter(this,divorced);
         spinner_divorced.setAdapter(customSpinnerAdapter);
+        for (int i=0;i<divorced.size();i++){
+            if (divorced.get(i).equalsIgnoreCase(sessionManager.getDivorced())){
+
+                spinner_divorced.setSelection(i);
+
+            }
+        }
+        spinner_divorced.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setDivorced(divorced.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         customSpinnerAdapter=new CustomSpinnerAdapter(this,married);
         spinner_married.setAdapter(customSpinnerAdapter);
+        for (int i=0;i<married.size();i++){
+            if (married.get(i).equalsIgnoreCase(sessionManager.getNeverMarried())){
+
+                spinner_married.setSelection(i);
+
+            }
+        }
+        spinner_married.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setNeverMarried(married.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         customSpinnerAdapter=new CustomSpinnerAdapter(this,race);
         spinner_race.setAdapter(customSpinnerAdapter);
+        for (int i=0;i<race.size();i++){
+            if (race.get(i).equalsIgnoreCase(sessionManager.getRace())){
+
+                spinner_race.setSelection(i);
+
+            }
+        }
+        spinner_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setRace(race.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+//        spinner_race.setAdapter(customSpinnerAdapter);
         customSpinnerAdapter=new CustomSpinnerAdapter(this,religion);
         spinner_religion.setAdapter(customSpinnerAdapter);
+        for (int i=0;i<religion.size();i++){
+            if (religion.get(i).equalsIgnoreCase(sessionManager.getReligious())){
+
+                spinner_religion.setSelection(i);
+
+            }
+        }
+        spinner_religion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setReligious(religion.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         customSpinnerAdapter=new CustomSpinnerAdapter(this,kids);
         spinner_no_of_kids.setAdapter(customSpinnerAdapter);
+        for (int i=0;i<kids.size();i++){
+            if (kids.get(i).equalsIgnoreCase(sessionManager.getKids())){
+
+                spinner_no_of_kids.setSelection(i);
+
+            }
+        }
+        spinner_no_of_kids.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setKids(kids.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         customSpinnerAdapter=new CustomSpinnerAdapter(this,education);
         spinner_education.setAdapter(customSpinnerAdapter);
+        for (int i=0;i<education.size();i++){
+            if (education.get(i).equalsIgnoreCase(sessionManager.getEducationLevel())){
+
+                spinner_education.setSelection(i);
+
+            }
+        }
+        spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setEducationLevel(education.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         customSpinnerAdapter=new CustomSpinnerAdapter(this,qualification);
         spinner_qualification.setAdapter(customSpinnerAdapter);
+
+        for (int i=0;i<qualification.size();i++){
+            if (qualification.get(i).equalsIgnoreCase(sessionManager.getQualification())){
+
+                spinner_qualification.setSelection(i);
+
+            }
+        }
+        spinner_qualification.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setQualification(qualification.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         SKU_INFINITE_ONE_BOOST = getResources().getString(R.string.iap_boost_1);
         SKU_INFINITE_FIVE_BOOST = getResources().getString(R.string.iap_boost_5);
@@ -580,6 +715,91 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         Intent intent = null;
         switch (v.getId()) {
             case R.id.tv_left_arrow:
+                spinner_divorced.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sessionManager.setDivorced(divorced.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                spinner_married.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sessionManager.setNeverMarried(married.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                spinner_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sessionManager.setRace(race.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                spinner_religion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sessionManager.setReligious(religion.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                spinner_no_of_kids.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sessionManager.setKids(kids.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sessionManager.setEducationLevel(education.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                spinner_qualification.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        sessionManager.setQualification(qualification.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+
                 commonMethods.showProgressDialog(this, customDialog);
                 apiService.updateSettings(getParams()).enqueue(new RequestCallback(REQ_UPDATE_SETTINGS, this));
                 break;

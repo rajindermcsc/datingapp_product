@@ -74,10 +74,10 @@ public class IgniterGoldSliderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_igniter_gold_slider, container, false);
 
-        ivIgniterPlus = (ImageView) view.findViewById(R.id.iv_igniter_plus);
-        tvPlusTitle = (CustomTextView) view.findViewById(R.id.tv_title);
-        backcircle = (RelativeLayout) view.findViewById(R.id.backcircle);
-        tvPlusSubTitle = (CustomTextView) view.findViewById(R.id.tv_subtitle);
+        ivIgniterPlus = view.findViewById(R.id.iv_igniter_plus);
+        tvPlusTitle = view.findViewById(R.id.tv_title);
+        backcircle = view.findViewById(R.id.backcircle);
+        tvPlusSubTitle = view.findViewById(R.id.tv_subtitle);
 
         return view;
     }

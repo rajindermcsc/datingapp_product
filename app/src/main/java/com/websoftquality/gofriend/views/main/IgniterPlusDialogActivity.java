@@ -9,15 +9,8 @@ package com.websoftquality.gofriend.views.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,18 +19,15 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
 import com.obs.CustomButton;
 import com.obs.CustomTextView;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import com.websoftquality.gofriend.R;
 import com.websoftquality.gofriend.adapters.main.ViewPagerAdapter;
 import com.websoftquality.gofriend.configs.AppController;
@@ -48,10 +38,6 @@ import com.websoftquality.gofriend.datamodels.main.JsonResponse;
 import com.websoftquality.gofriend.datamodels.main.PlanListModel;
 import com.websoftquality.gofriend.datamodels.main.PlanSliderModel;
 import com.websoftquality.gofriend.iaputils.IabBroadcastReceiver;
-import com.websoftquality.gofriend.iaputils.IabException;
-//import com.websoftquality.gofriend.iaputils.IabHelper;
-import com.websoftquality.gofriend.iaputils.IabResult;
-import com.websoftquality.gofriend.iaputils.Inventory;
 import com.websoftquality.gofriend.iaputils.Purchase;
 import com.websoftquality.gofriend.interfaces.ApiService;
 import com.websoftquality.gofriend.interfaces.ServiceListener;
@@ -60,6 +46,12 @@ import com.websoftquality.gofriend.utils.Enums;
 import com.websoftquality.gofriend.utils.RequestCallback;
 import com.websoftquality.gofriend.views.customize.CirclePageIndicator;
 import com.websoftquality.gofriend.views.customize.CustomDialog;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import static com.websoftquality.gofriend.R.anim;
 import static com.websoftquality.gofriend.R.color;
@@ -386,47 +378,47 @@ public class IgniterPlusDialogActivity extends AppCompatActivity implements IabB
     }
 
     private void initView() {
-        viewPager = (ViewPager) findViewById(id.vp_igniter_plus);
-        pageIndicator = (CirclePageIndicator) findViewById(id.indicator);
+        viewPager = findViewById(id.vp_igniter_plus);
+        pageIndicator = findViewById(id.indicator);
 
         dialog = commonMethods.getAlertDialog(this);
 
-        rlt_tutorial = (RelativeLayout) findViewById(id.rlt_tutorial);
-        rlt_bottom = (RelativeLayout) findViewById(id.rlt_bottom);
-        lltOneMonth = (RelativeLayout) findViewById(id.llt_one_month);
-        lltSixMonth = (RelativeLayout) findViewById(id.llt_six_month);
-        lltTwelveMonth = (RelativeLayout) findViewById(id.llt_twelve_month);
+        rlt_tutorial = findViewById(id.rlt_tutorial);
+        rlt_bottom = findViewById(id.rlt_bottom);
+        lltOneMonth = findViewById(id.llt_one_month);
+        lltSixMonth = findViewById(id.llt_six_month);
+        lltTwelveMonth = findViewById(id.llt_twelve_month);
 
-        rltOneMonth = (RelativeLayout) findViewById(id.rlt_one_month);
-        rltSixMonth = (RelativeLayout) findViewById(id.rlt_six_month);
-        rltTwelveMonth = (RelativeLayout) findViewById(id.rlt_twelve_month);
+        rltOneMonth = findViewById(id.rlt_one_month);
+        rltSixMonth = findViewById(id.rlt_six_month);
+        rltTwelveMonth = findViewById(id.rlt_twelve_month);
 
-        tvTitle = (CustomTextView) findViewById(id.tv_igniter_plus_title);
-        tvOneMonth = (CustomTextView) findViewById(id.tv_one_month);
-        tvSixMonth = (CustomTextView) findViewById(id.tv_six_month);
-        tvTwelveMonth = (CustomTextView) findViewById(id.tv_twelve_month);
+        tvTitle = findViewById(id.tv_igniter_plus_title);
+        tvOneMonth = findViewById(id.tv_one_month);
+        tvSixMonth = findViewById(id.tv_six_month);
+        tvTwelveMonth = findViewById(id.tv_twelve_month);
 
-        tvOneMonthPrice = (CustomTextView) findViewById(id.tv_month_price);
-        tvSixMonthPrice = (CustomTextView) findViewById(id.tv_six_month_price);
-        tvYearPrice = (CustomTextView) findViewById(id.tv_year_price);
+        tvOneMonthPrice = findViewById(id.tv_month_price);
+        tvSixMonthPrice = findViewById(id.tv_six_month_price);
+        tvYearPrice = findViewById(id.tv_year_price);
 
-        tvPerOneMonth = (CustomTextView) findViewById(id.tv_per_month);
-        tvPerSixMonth = (CustomTextView) findViewById(id.tv_per_six_month);
-        tvPerYear = (CustomTextView) findViewById(id.tv_per_year);
+        tvPerOneMonth = findViewById(id.tv_per_month);
+        tvPerSixMonth = findViewById(id.tv_per_six_month);
+        tvPerYear = findViewById(id.tv_per_year);
 
-        tvSixTotalPrice = (CustomTextView) findViewById(id.tv_six_total_price);
-        tvTwelveTotalPrice = (CustomTextView) findViewById(id.tv_year_total_price);
-        tvPerYear = (CustomTextView) findViewById(id.tv_per_year);
+        tvSixTotalPrice = findViewById(id.tv_six_total_price);
+        tvTwelveTotalPrice = findViewById(id.tv_year_total_price);
+        tvPerYear = findViewById(id.tv_per_year);
 
-        tvSixMonthSave = (CustomTextView) findViewById(id.tv_six_month_save);
-        tvTwelveMonthSave = (CustomTextView) findViewById(id.tv_one_year_save);
-        tvOneMonthSave = (CustomTextView) findViewById(id.tv_one_month_save);
-        tvMonthTotalPrice = (CustomTextView) findViewById(id.tv_month_total_price);
-        tvSixMonthBook = (CustomTextView) findViewById(id.tv_six_month_book);
-        tvTwelveMonthBook = (CustomTextView) findViewById(id.tv_one_year_book);
-        tvOneMonthBook = (CustomTextView) findViewById(id.tv_one_month_book);
+        tvSixMonthSave = findViewById(id.tv_six_month_save);
+        tvTwelveMonthSave = findViewById(id.tv_one_year_save);
+        tvOneMonthSave = findViewById(id.tv_one_month_save);
+        tvMonthTotalPrice = findViewById(id.tv_month_total_price);
+        tvSixMonthBook = findViewById(id.tv_six_month_book);
+        tvTwelveMonthBook = findViewById(id.tv_one_year_book);
+        tvOneMonthBook = findViewById(id.tv_one_month_book);
 
-        btnContinue = (CustomButton) findViewById(id.btn_continue);
+        btnContinue = findViewById(id.btn_continue);
 
         //rlt_tutorial.bringToFront();
         rlt_bottom.bringToFront();
@@ -684,13 +676,15 @@ public class IgniterPlusDialogActivity extends AppCompatActivity implements IabB
                 lltTwelveMonth.startAnimation(animZoomOutIn);
                 break;
             case id.btn_continue:
-                /**
-                 * Change update Transaction method while live release for without calling in app purchase
-                 */
-                if(getResources().getString(R.string.isLive).equals("true"))
-                    callInAppPurchase();  // Call In App Purchase
-                else
-                    updateTransaction("Test Order",currentPlanId,type,"Test SKU","Test Purchase Token");
+                Intent intent=new Intent(IgniterPlusDialogActivity.this,StripeCardPaymentActivity.class);
+                startActivity(intent);
+//                /**
+//                 * Change update Transaction method while live release for without calling in app purchase
+//                 */
+//                if(getResources().getString(R.string.isLive).equals("true"))
+//                    callInAppPurchase();  // Call In App Purchase
+//                else
+//                    updateTransaction("Test Order",currentPlanId,type,"Test SKU","Test Purchase Token");
                 break;
             default:
                 break;

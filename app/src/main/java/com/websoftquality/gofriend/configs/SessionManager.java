@@ -358,6 +358,62 @@ public class SessionManager {
         sharedPreferences.edit().putString("maxAge", maxAge).apply();
     }
 
+    public String getDivorced() {
+        return sharedPreferences.getString("setDivorced", "1x");
+    }
+
+    public void setDivorced(String setDivorced) {
+        sharedPreferences.edit().putString("setDivorced", setDivorced).apply();
+    }
+
+    public String getNeverMarried() {
+        return sharedPreferences.getString("setNeverMarried", "Yes");
+    }
+
+    public void setNeverMarried(String setNeverMarried) {
+        sharedPreferences.edit().putString("setNeverMarried", setNeverMarried).apply();
+    }
+
+    public String getRace() {
+        return sharedPreferences.getString("setRace", "White");
+    }
+
+    public void setRace(String setRace) {
+        sharedPreferences.edit().putString("setRace", setRace).apply();
+    }
+
+    public String getReligious() {
+        return sharedPreferences.getString("setReligious", "White");
+    }
+
+    public void setReligious(String setReligious) {
+        sharedPreferences.edit().putString("setReligious", setReligious).apply();
+    }
+
+    public String getKids() {
+        return sharedPreferences.getString("setKids", "2");
+    }
+
+    public void setKids(String setKids) {
+        sharedPreferences.edit().putString("setKids", setKids).apply();
+    }
+
+    public String getEducationLevel() {
+        return sharedPreferences.getString("setEducationLevel", "College");
+    }
+
+    public void setEducationLevel(String setEducationLevel) {
+        sharedPreferences.edit().putString("setEducationLevel", setEducationLevel).apply();
+    }
+
+    public String getQualification() {
+        return sharedPreferences.getString("setQualification", "Bachelors");
+    }
+
+    public void setQualification(String setQualification) {
+        sharedPreferences.edit().putString("setQualification", setQualification).apply();
+    }
+
     public String getMatched() {
         return sharedPreferences.getString("Matched", "0");
     }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.websoftquality.gofriend.configs.AppController;
 import com.websoftquality.gofriend.configs.SessionManager;
 import com.websoftquality.gofriend.utils.Apierror_handle;
 import com.websoftquality.gofriend.utils.Loading;
+import com.websoftquality.gofriend.utils.MessageToast;
 
 import org.json.JSONObject;
 
@@ -42,15 +44,18 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
     String amount,item;
     @Inject
     SessionManager sessionManager;
+    MessageToast messageToast;
+    Handler handler;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stripe_card_payment);
+        handler=new Handler();
         loading=new Loading(this);
         apierror_handle=new Apierror_handle(this);
-
+        messageToast=new MessageToast(this);
         AppController.getAppComponent().inject(this);
         intent=getIntent();
         amount=intent.getStringExtra("amount");
@@ -91,7 +96,16 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
             Toast.makeText(this, "CVV is invalid", Toast.LENGTH_SHORT).show();
         }
         else {
-            savecardDetails(getResources().getString(R.string.base_url).concat("setpayment"));
+            messageToast.showDialog("Payment Successfully");
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent=new Intent(StripeCardPaymentActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            },2900);
+//            savecardDetails(getResources().getString(R.string.base_url).concat("setpayment"));
         }
     }
 

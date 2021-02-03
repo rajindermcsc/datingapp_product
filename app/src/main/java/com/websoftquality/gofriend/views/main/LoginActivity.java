@@ -800,6 +800,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SliderModel sliderModel = gson.fromJson(jsonResp.getStrResponse(), SliderModel.class);
         sessionManager.setMinAge(sliderModel.getMinimumAge());
         sessionManager.setMaxAge(sliderModel.getMaximumAge());
+        sessionManager.setDivorced(sliderModel.getDivorced());
+        sessionManager.setNeverMarried(sliderModel.getNever_married());
+        sessionManager.setRace(sliderModel.getRace());
+        sessionManager.setReligious(sliderModel.getReligious());
+        sessionManager.setKids(sliderModel.getKids());
+        sessionManager.setEducationLevel(sliderModel.getEducation_level());
+        sessionManager.setQualification(sliderModel.getQualification());
         appleClientId = sliderModel.getClientId();
         onAppleSignIn();
         if (sliderModel != null && sliderModel.getImageList() != null && sliderModel.getImageList().size() > 0) {

@@ -29,6 +29,88 @@ public class SliderModel {
     @SerializedName("maximum_age")
     @Expose
     private String maximumAge;
+
+    @SerializedName("divorced")
+    @Expose
+    private String divorced;
+    @SerializedName("never_married")
+    @Expose
+    private String never_married;
+
+    @SerializedName("race")
+    @Expose
+    private String race;
+
+    @SerializedName("religious")
+    @Expose
+    private String religious;
+
+    @SerializedName("kids")
+    @Expose
+    private String kids;
+    @SerializedName("education_level")
+    @Expose
+    private String education_level;
+
+    public String getDivorced() {
+        return divorced;
+    }
+
+    public void setDivorced(String divorced) {
+        this.divorced = divorced;
+    }
+
+    public String getNever_married() {
+        return never_married;
+    }
+
+    public void setNever_married(String never_married) {
+        this.never_married = never_married;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    public String getReligious() {
+        return religious;
+    }
+
+    public void setReligious(String religious) {
+        this.religious = religious;
+    }
+
+    public String getKids() {
+        return kids;
+    }
+
+    public void setKids(String kids) {
+        this.kids = kids;
+    }
+
+    public String getEducation_level() {
+        return education_level;
+    }
+
+    public void setEducation_level(String education_level) {
+        this.education_level = education_level;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    @SerializedName("qualification")
+    @Expose
+    private String qualification;
     @SerializedName("login_sliders")
     @Expose
     private ArrayList<ImageListModel> imageList = new ArrayList<>();
