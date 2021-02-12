@@ -46,6 +46,7 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
     SessionManager sessionManager;
     MessageToast messageToast;
     Handler handler;
+    int previousLength;
 
 
     @Override
@@ -181,7 +182,25 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
+        int length = edt_expiry.getText().toString().trim().length();
 
+        if (previousLength <= length && length < 3) {
+            int month = Integer.parseInt(edt_expiry.getText().toString());
+            if (length == 1 && month >= 2) {
+                String autoFixStr = "0" + month + "/";
+                edt_expiry.setText(autoFixStr);
+                edt_expiry.setSelection(3);
+            } else if (length == 2 && month <= 12) {
+                String autoFixStr = edt_expiry.getText().toString() + "/";
+                edt_expiry.setText(autoFixStr);
+                edt_expiry.setSelection(3);
+            } else if (length ==2 && month > 12) {
+                edt_expiry.setText("1");
+                edt_expiry.setSelection(1);
+            }
+        } else if (length == 5) {
+            edt_expiry.requestFocus(); // auto move to next edittext
+        }
     }
 
     @Override

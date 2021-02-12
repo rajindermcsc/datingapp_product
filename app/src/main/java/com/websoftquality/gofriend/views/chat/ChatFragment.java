@@ -17,6 +17,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ import com.websoftquality.gofriend.views.main.IgniterPlusDialogActivity;
  User chat list page (Home pages)
  ****************************************************************/
 public class ChatFragment extends Fragment implements ServiceListener {
+    private static final String TAG = "ChatFragment";
     public int conv_no;
     @Inject
     ApiService apiService;
@@ -313,10 +315,12 @@ public class ChatFragment extends Fragment implements ServiceListener {
     @Override
     public void onFailure(JsonResponse jsonResp, String data) {
         commonMethods.hideProgressDialog();
+
         if (!jsonResp.isOnline()) commonMethods.showMessage(mActivity, dialog, data);
     }
 
     private void onSuccessGetMatchedList(JsonResponse jsonResp) {
+
         matchedProfileModel = gson.fromJson(jsonResp.getStrResponse(), MatchedProfileModel.class);
         if (matchedProfileModel != null) {
             updateView();
@@ -361,7 +365,7 @@ public class ChatFragment extends Fragment implements ServiceListener {
                 ((HomeActivity) getActivity()).changeChatIcon(0);
             }
         }catch (Exception e){
-
+            Log.e(TAG, "updateView: "+e.getMessage());
         }
 
         rltGold.setVisibility(View.VISIBLE);

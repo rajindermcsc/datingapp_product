@@ -15,6 +15,7 @@ import com.websoftquality.gofriend.adapters.chat.MessageUserListAdapter;
 import com.websoftquality.gofriend.adapters.chat.NewMatchesListAdapter;
 import com.websoftquality.gofriend.adapters.chat.UserListAdapter;
 import com.websoftquality.gofriend.adapters.main.ProfileSliderAdapter;
+import com.websoftquality.gofriend.adapters.main.QuestionsAdapter;
 import com.websoftquality.gofriend.adapters.matches.MatchesSwipeAdapter;
 import com.websoftquality.gofriend.adapters.chat.UnmatchReasonListAdapter;
 import com.websoftquality.gofriend.adapters.profile.EditProfileImageListAdapter;
@@ -58,6 +59,7 @@ import com.websoftquality.gofriend.views.main.VerificationActivity;
 import com.websoftquality.gofriend.views.main.AccountKit.FacebookAccountKitActivity;
 import com.websoftquality.gofriend.views.main.AccountKit.TwilioAccountKitActivity;
 import com.websoftquality.gofriend.views.profile.AddLocationActivity;
+import com.websoftquality.gofriend.views.profile.AdvancedSettings;
 import com.websoftquality.gofriend.views.profile.EditProfileActivity;
 import com.websoftquality.gofriend.views.profile.EnlargeProfileActivity;
 import com.websoftquality.gofriend.views.profile.GetIgniterPlusActivity;
@@ -202,4 +204,8 @@ public interface AppComponent {
 
 
     void inject(StripeCardPaymentActivity stripeCardPaymentActivity);
+
+    void inject(QuestionsAdapter questionsAdapter);
+
+    void inject(AdvancedSettings advancedSettings);
 }

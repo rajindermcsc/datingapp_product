@@ -63,9 +63,7 @@ import static com.websoftquality.gofriend.utils.Enums.REQ_UPDATE_PROFILE;
  User home profile page (Contain settings and editprofile)
  ****************************************************************/
 public class ProfileFragment extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener, ServiceListener {
-    /**
-     * Injection for common class
-     */
+
     @Inject
     ApiService apiService;
     @Inject
@@ -80,9 +78,7 @@ public class ProfileFragment extends Fragment implements ViewPager.OnPageChangeL
     ImageUtils imageUtils;
 
 
-    /**
-     * Variable for the profile page
-     */
+
     private View view;
     private ActivityListener listener;
     private Resources res;
@@ -90,7 +86,7 @@ public class ProfileFragment extends Fragment implements ViewPager.OnPageChangeL
     private CircleImageView civUserImage;
     private CustomTextView tvUserNameAge, tvUserJob, tvUserSchool, tvUserSearchLocation, tvSuperLikesCount, tvBoostCount;
     private CustomButton btnIgniterPlus;
-    private LinearLayout lltSettings, lltEditProfile, lltRemainingCount, lltSuperLike, lltBoost, lltUpgrade;
+    private LinearLayout lltSettings, lltEditProfile, lltRemainingCount, lltSuperLike, lltBoost, lltUpgrade,llt_advance_setting;
     private RelativeLayout rltViewPager;
     private IgniterViewPager viewPager;
     private CirclePageIndicator pageIndicator;
@@ -144,39 +140,37 @@ public class ProfileFragment extends Fragment implements ViewPager.OnPageChangeL
         return view;
     }
 
-    /**
-     * Fragment variable declare
-     * @param v
-     * @param savedInstanceState
-     */
+
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
 
-        lltSettings = (LinearLayout) view.findViewById(R.id.llt_settings);
-        lltEditProfile = (LinearLayout) view.findViewById(R.id.llt_edit_profile);
-        lltRemainingCount = (LinearLayout) view.findViewById(R.id.llt_remaining_count);
-        lltSuperLike = (LinearLayout) view.findViewById(R.id.llt_super_like);
-        lltBoost = (LinearLayout) view.findViewById(R.id.llt_boost);
-        lltUpgrade = (LinearLayout) view.findViewById(R.id.llt_upgrade);
+        lltSettings = view.findViewById(R.id.llt_settings);
+        lltEditProfile = view.findViewById(R.id.llt_edit_profile);
+        lltRemainingCount = view.findViewById(R.id.llt_remaining_count);
+        lltSuperLike = view.findViewById(R.id.llt_super_like);
+        lltBoost = view.findViewById(R.id.llt_boost);
+        lltUpgrade = view.findViewById(R.id.llt_upgrade);
+        llt_advance_setting = view.findViewById(R.id.llt_advance_setting);
 
-        rltViewPager = (RelativeLayout) view.findViewById(R.id.rlt_view_pager);
+        rltViewPager = view.findViewById(R.id.rlt_view_pager);
 
-        tvSuperLikesCount = (CustomTextView) view.findViewById(R.id.tv_super_likes_count);
-        tvBoostCount = (CustomTextView) view.findViewById(R.id.tv_boost_count);
-        tvUserSearchLocation = (CustomTextView) view.findViewById(R.id.tv_user_search_location);
-        tvUserNameAge = (CustomTextView) view.findViewById(R.id.tv_user_name_age);
-        tvUserJob = (CustomTextView) view.findViewById(R.id.tv_user_job);
-        tvUserSchool = (CustomTextView) view.findViewById(R.id.tv_user_school);
+        tvSuperLikesCount = view.findViewById(R.id.tv_super_likes_count);
+        tvBoostCount = view.findViewById(R.id.tv_boost_count);
+        tvUserSearchLocation = view.findViewById(R.id.tv_user_search_location);
+        tvUserNameAge = view.findViewById(R.id.tv_user_name_age);
+        tvUserJob = view.findViewById(R.id.tv_user_job);
+        tvUserSchool = view.findViewById(R.id.tv_user_school);
 
-        civUserImage = (CircleImageView) view.findViewById(R.id.civ_profile_image);
-        btnIgniterPlus = (CustomButton) view.findViewById(R.id.btn_igniter_plus);
+        civUserImage = view.findViewById(R.id.civ_profile_image);
+        btnIgniterPlus = view.findViewById(R.id.btn_igniter_plus);
 
         dialog = commonMethods.getAlertDialog(mActivity);
 
-        viewPager = (IgniterViewPager) view.findViewById(R.id.viewpager);
+        viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(new IgniterSliderAdapter(mActivity));
 
-        pageIndicator = (CirclePageIndicator) view.findViewById(R.id.page_indicator);
+        pageIndicator = view.findViewById(R.id.page_indicator);
+        llt_advance_setting.setOnClickListener(this);
         pageIndicator.setViewPager(viewPager, 0);
 
 
@@ -379,6 +373,10 @@ public class ProfileFragment extends Fragment implements ViewPager.OnPageChangeL
     public void onClick(View v) {
         Intent intent = null;
         switch (v.getId()) {
+            case R.id.llt_advance_setting:
+                Intent intent1=new Intent(mActivity, AdvancedSettings.class);
+                startActivity(intent1);
+                break;
             case R.id.civ_profile_image:
                 intent = new Intent(mActivity, EnlargeProfileActivity.class);
                 intent.putExtra("navType", 3);

@@ -127,7 +127,7 @@ public class NotificationUtils {
         // notification icon
         int icon = R.mipmap.ic_launcher;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            icon = R.drawable.app_logo;
+            icon = R.drawable.appicon;
             //builder.setColor(Color.RED);
         } else {
             icon = R.mipmap.ic_launcher;

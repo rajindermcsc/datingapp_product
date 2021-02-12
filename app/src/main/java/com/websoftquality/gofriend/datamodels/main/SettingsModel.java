@@ -57,6 +57,10 @@ public class SettingsModel {
     @SerializedName("show_me")
     @Expose
     private String showMe;
+
+    @SerializedName("hobbies")
+    @Expose
+    private String hobbies;
     @SerializedName("username")
     @Expose
     private String userName;
@@ -114,6 +118,27 @@ public class SettingsModel {
     @SerializedName("location")
     @Expose
     private ArrayList<LocationModel> locationModels = new ArrayList<>();
+
+
+    public String getDistanceUnit() {
+        return distanceUnit;
+    }
+
+    public void setDistanceUnit(String distanceUnit) {
+        this.distanceUnit = distanceUnit;
+    }
+
+    public ArrayList<OtherSettingsModel> getOther_settings() {
+        return other_settings;
+    }
+
+    public void setOther_settings(ArrayList<OtherSettingsModel> other_settings) {
+        this.other_settings = other_settings;
+    }
+
+    @SerializedName("other_settings")
+    @Expose
+    ArrayList < OtherSettingsModel > other_settings = new ArrayList < OtherSettingsModel > ();
 
     public String getMessage() {
         return message;
@@ -369,5 +394,13 @@ public class SettingsModel {
 
     public void setSearchLocation(String searchLocation) {
         this.searchLocation = searchLocation;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
     }
 }

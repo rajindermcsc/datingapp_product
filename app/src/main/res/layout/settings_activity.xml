@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray1"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/header_layout" />
@@ -60,7 +61,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_toLeftOf="@+id/customTextView"
                             android:layout_toStartOf="@+id/customTextView"
-                            android:src="@drawable/app_logo_gold"
+                            android:src="@drawable/appicon"
                             android:tint="@color/gold1" />
 
                         <com.obs.CustomTextView
@@ -136,7 +137,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_toLeftOf="@+id/customTextView1"
                             android:layout_toStartOf="@+id/customTextView1"
-                            android:src="@drawable/app_logo_pink"
+                            android:src="@drawable/appicon"
                             android:tint="@color/color_accent" />
 
                         <com.obs.CustomTextView
@@ -289,9 +290,10 @@
             <include layout="@layout/app_settings" />
 
 
-            <include layout="@layout/others_settings"/>
+            <include layout="@layout/others_settings"
+                android:visibility="gone"/>
 
-            <include layout="@layout/other_settings" />
+<!--            <include layout="@layout/other_settings" />-->
 
             <com.obs.CustomTextView
                 style="@style/proximanova_bold"
@@ -449,7 +451,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/app_logo" />
+                    android:src="@drawable/appicon" />
 
                 <com.obs.CustomTextView
                     style="@style/proximanova_regular"

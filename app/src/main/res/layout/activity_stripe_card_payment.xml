@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".views.main.StripeCardPaymentActivity">
 
 
@@ -80,7 +81,7 @@
                         android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:maxLength="5"
-                        android:inputType="numberPassword"
+                        android:inputType="number"
                         android:hint="MM/YY"
 
                         android:textSize="14sp">

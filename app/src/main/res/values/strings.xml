@@ -11,6 +11,7 @@
     <string name="share_url">"https://websoftquality.com/dating/public/admin/login"</string>
     <string name="redirect_url">"https://websoftquality.com/dating/public/"</string>
     <string name="apple_redirect_url">"https://websoftquality.com/dating/public/api/apple_callback"</string>
+    <string name="user_settings">"user_settings"</string>
 
 
     <string name="No_INTERNET_CONNECTION">No Internet Connection</string>

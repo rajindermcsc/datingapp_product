@@ -13,11 +13,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -33,11 +35,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.obs.CustomTextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -57,8 +65,12 @@ import com.websoftquality.gofriend.interfaces.OnRangeSeekBarFinalValueListener;
 import com.websoftquality.gofriend.interfaces.OnSeekBarChangeListener;
 import com.websoftquality.gofriend.interfaces.OnSeekBarFinalValueListener;
 import com.websoftquality.gofriend.interfaces.ServiceListener;
+import com.websoftquality.gofriend.utils.Apierror_handle;
 import com.websoftquality.gofriend.utils.CommonMethods;
 import com.websoftquality.gofriend.utils.CustomSpinnerAdapter;
+import com.websoftquality.gofriend.utils.Loading;
+import com.websoftquality.gofriend.utils.MessageToast;
+import com.websoftquality.gofriend.utils.Myconstant;
 import com.websoftquality.gofriend.utils.RequestCallback;
 import com.websoftquality.gofriend.views.customize.CustomDialog;
 import com.websoftquality.gofriend.views.customize.CustomLayoutManager;
@@ -68,6 +80,8 @@ import com.websoftquality.gofriend.views.customize.RangeSeekBar;
 import com.websoftquality.gofriend.views.main.IgniterPlusDialogActivity;
 import com.websoftquality.gofriend.views.main.LoginActivity;
 import com.websoftquality.gofriend.views.main.UserNameActivity;
+
+import org.json.JSONObject;
 
 import static com.websoftquality.gofriend.utils.Enums.REQ_ADD_LOCATION;
 import static com.websoftquality.gofriend.utils.Enums.REQ_GET_SETTINGS;
@@ -272,225 +286,28 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
     private String profileUrl = "", helpUrl = "", licenseUrl = "", privacyPolicyUrl = "", termsOfServiceUrl = "", communityUrl = "", safetyUrl = "", message = "";
     private String maxDistance, minAge, maxAge;
     private LocationListAdapter locationListAdapter;
-    private LocationModel locationModel;
     private ArrayList<LocationModel> locationModels = new ArrayList<>();
     private CustomLayoutManager linearLayoutManager;
-    Spinner spinner_divorced,spinner_married,spinner_race,spinner_religion,spinner_no_of_kids,spinner_education,
-    spinner_qualification;
-    CustomSpinnerAdapter customSpinnerAdapter;
-    ArrayList<String> divorced=new ArrayList<>();
-    ArrayList<String> married=new ArrayList<>();
-    ArrayList<String> race=new ArrayList<>();
-    ArrayList<String> religion=new ArrayList<>();
-    ArrayList<String> kids=new ArrayList<>();
-    ArrayList<String> education=new ArrayList<>();
-    ArrayList<String> qualification=new ArrayList<>();
     RecyclerView rv_questions;
     LinearLayoutManager linearLayoutManager1;
     QuestionsAdapter questionsAdapter;
+    Loading loading;
+    Apierror_handle apierror_handle;
+    MessageToast messageToast;
+    EditText edt_hobbies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         AppController.getAppComponent().inject(this);
-        divorced.clear();
-        married.clear();
-        race.clear();
-        religion.clear();
-        kids.clear();
-        education.clear();
-        qualification.clear();
-        divorced.add("1x");
-        divorced.add("2x");
-        divorced.add("3x");
-        divorced.add("4x");
-        divorced.add("5x");
-        married.add("Yes");
-        married.add("No");
-        race.add("Black");
-        race.add("White");
-        race.add("Asian");
-        race.add("Mixed");
-        kids.add("0");
-        kids.add("1");
-        kids.add("2");
-        kids.add("3");
-        kids.add("4");
-        kids.add("5");
-        kids.add("6");
-        kids.add("7");
-        kids.add("8");
-        kids.add("9");
-        kids.add("10");
-        religion.add("Christian");
-        religion.add("Catholic");
-        religion.add("Presbyterian");
-        religion.add("Methodist");
-        religion.add("Apostolic");
-        education.add("None");
-        education.add("Elementary");
-        education.add("High School");
-        education.add("College");
-        education.add("University");
-        qualification.add("Diploma");
-        qualification.add("Bachelors");
-        qualification.add("PhD");
-        qualification.add("Masters");
-        spinner_divorced=findViewById(R.id.spinner_divorced);
-        spinner_married=findViewById(R.id.spinner_married);
-        spinner_race=findViewById(R.id.spinner_race);
-        spinner_religion=findViewById(R.id.spinner_religion);
-        spinner_no_of_kids=findViewById(R.id.spinner_no_of_kids);
-        spinner_education=findViewById(R.id.spinner_education);
-        spinner_qualification=findViewById(R.id.spinner_qualification);
+        loading=new Loading(this);
+        apierror_handle=new Apierror_handle(this);
+        messageToast=new MessageToast(this);
+        edt_hobbies=findViewById(R.id.edt_hobbies);
+
         rv_questions=findViewById(R.id.rv_questions);
 
-        customSpinnerAdapter=new CustomSpinnerAdapter(this,divorced);
-        spinner_divorced.setAdapter(customSpinnerAdapter);
-        for (int i=0;i<divorced.size();i++){
-            if (divorced.get(i).equalsIgnoreCase(sessionManager.getDivorced())){
-
-                spinner_divorced.setSelection(i);
-
-            }
-        }
-        spinner_divorced.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setDivorced(divorced.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        customSpinnerAdapter=new CustomSpinnerAdapter(this,married);
-        spinner_married.setAdapter(customSpinnerAdapter);
-        for (int i=0;i<married.size();i++){
-            if (married.get(i).equalsIgnoreCase(sessionManager.getNeverMarried())){
-
-                spinner_married.setSelection(i);
-
-            }
-        }
-        spinner_married.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setNeverMarried(married.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        customSpinnerAdapter=new CustomSpinnerAdapter(this,race);
-        spinner_race.setAdapter(customSpinnerAdapter);
-        for (int i=0;i<race.size();i++){
-            if (race.get(i).equalsIgnoreCase(sessionManager.getRace())){
-
-                spinner_race.setSelection(i);
-
-            }
-        }
-        spinner_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setRace(race.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-//        spinner_race.setAdapter(customSpinnerAdapter);
-        customSpinnerAdapter=new CustomSpinnerAdapter(this,religion);
-        spinner_religion.setAdapter(customSpinnerAdapter);
-        for (int i=0;i<religion.size();i++){
-            if (religion.get(i).equalsIgnoreCase(sessionManager.getReligious())){
-
-                spinner_religion.setSelection(i);
-
-            }
-        }
-        spinner_religion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setReligious(religion.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        customSpinnerAdapter=new CustomSpinnerAdapter(this,kids);
-        spinner_no_of_kids.setAdapter(customSpinnerAdapter);
-        for (int i=0;i<kids.size();i++){
-            if (kids.get(i).equalsIgnoreCase(sessionManager.getKids())){
-
-                spinner_no_of_kids.setSelection(i);
-
-            }
-        }
-        spinner_no_of_kids.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setKids(kids.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-        customSpinnerAdapter=new CustomSpinnerAdapter(this,education);
-        spinner_education.setAdapter(customSpinnerAdapter);
-        for (int i=0;i<education.size();i++){
-            if (education.get(i).equalsIgnoreCase(sessionManager.getEducationLevel())){
-
-                spinner_education.setSelection(i);
-
-            }
-        }
-        spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setEducationLevel(education.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        customSpinnerAdapter=new CustomSpinnerAdapter(this,qualification);
-        spinner_qualification.setAdapter(customSpinnerAdapter);
-
-        for (int i=0;i<qualification.size();i++){
-            if (qualification.get(i).equalsIgnoreCase(sessionManager.getQualification())){
-
-                spinner_qualification.setSelection(i);
-
-            }
-        }
-        spinner_qualification.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setQualification(qualification.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         SKU_INFINITE_ONE_BOOST = getResources().getString(R.string.iap_boost_1);
         SKU_INFINITE_FIVE_BOOST = getResources().getString(R.string.iap_boost_5);
@@ -524,6 +341,56 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
             mSelectedSubscriptionPeriod = SKU_INFINITE_6_IP;
         else if (type.equals("gold"))
             mSelectedSubscriptionPeriod = SKU_INFINITE_6_IG;
+    }
+
+
+    public void settingswebservice()
+    {
+        loading.showDialog();
+        String tag_string_req = "req_login";
+        StringRequest strReq = new StringRequest(Request.Method.GET, getResources().getString(R.string.base_url) + getResources().getString(R.string.user_settings), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response)
+            {
+                Log.e(TAG, "details: " + response);
+                try
+                {
+                    final JSONObject jsonobj = new JSONObject(response);
+                    loading.hideDialog();
+                    if (jsonobj.getString("status_code").equals("1")) {
+
+
+                    }
+
+                    else
+                    {
+
+                    }
+                } catch (Exception e) {
+                    loading.hideDialog();
+                    //  Log.e(TAG, "message: "+jsonobj.getString("message") );
+                    messageToast.showDialog(getResources().getString(R.string.error_msg));
+                    Log.e(TAG, "onResponse: in catch" + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "onErrorResponse:" + error.getMessage());
+                loading.hideDialog();
+                apierror_handle.get_error(error);
+            }
+        }) {
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put(Myconstant.Api_AppSecurityKey, Myconstant.AppSecurityKey);
+                return params;
+            }
+        };
+        strReq.setRetryPolicy(new DefaultRetryPolicy(Myconstant.apitime_out, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
     private void initView() {
@@ -715,89 +582,89 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         Intent intent = null;
         switch (v.getId()) {
             case R.id.tv_left_arrow:
-                spinner_divorced.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        sessionManager.setDivorced(divorced.get(position));
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                spinner_married.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        sessionManager.setNeverMarried(married.get(position));
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                spinner_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        sessionManager.setRace(race.get(position));
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                spinner_religion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        sessionManager.setReligious(religion.get(position));
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                spinner_no_of_kids.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        sessionManager.setKids(kids.get(position));
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        sessionManager.setEducationLevel(education.get(position));
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                spinner_qualification.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        sessionManager.setQualification(qualification.get(position));
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
+//                spinner_divorced.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        sessionManager.setDivorced(divorced.get(position));
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                    }
+//                });
+//
+//                spinner_married.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        sessionManager.setNeverMarried(married.get(position));
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                    }
+//                });
+//
+//                spinner_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        sessionManager.setRace(race.get(position));
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                    }
+//                });
+//
+//                spinner_religion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        sessionManager.setReligious(religion.get(position));
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                    }
+//                });
+//
+//                spinner_no_of_kids.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        sessionManager.setKids(kids.get(position));
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                    }
+//                });
+//
+//                spinner_education.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        sessionManager.setEducationLevel(education.get(position));
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                    }
+//                });
+//
+//                spinner_qualification.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        sessionManager.setQualification(qualification.get(position));
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                    }
+//                });
 
 
                 commonMethods.showProgressDialog(this, customDialog);
@@ -865,9 +732,6 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
                 }
                 break;
             case R.id.tv_claim_yours:
-                intent = new Intent(SettingsActivity.this, UserNameActivity.class);
-                startActivityForResult(intent, 100);
-                break;
             case R.id.tv_user_name:
                 intent = new Intent(SettingsActivity.this, UserNameActivity.class);
                 startActivityForResult(intent, 100);
@@ -966,6 +830,7 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
         hashMap.put("messages", message);
         hashMap.put("message_likes", msgLikes);
         hashMap.put("super_likes", superLike);
+        hashMap.put("hobbies", edt_hobbies.getText().toString());
         /*hashMap.put("latitude", "100");
         hashMap.put("longitude", "97");*/
 
@@ -1019,6 +884,20 @@ public class SettingsActivity extends AppCompatActivity implements IabBroadcastR
     private void onSuccessGetSettings(JsonResponse jsonResp) {
 
         settingsModel = gson.fromJson(jsonResp.getStrResponse(), SettingsModel.class);
+        linearLayoutManager1=new LinearLayoutManager(this);
+        questionsAdapter=new QuestionsAdapter(this,settingsModel,sessionManager.getToken(),matchingProfile,maxDistance,minAge,
+                maxAge,showMe,distanceType,newMatch,message,msgLikes,superLike,edt_hobbies.getText().toString());
+        rv_questions.setLayoutManager(linearLayoutManager1);
+        rv_questions.setAdapter(questionsAdapter);
+        Log.e(TAG, "onSuccessGetSettings: "+settingsModel.getHobbies());
+        if (settingsModel.getHobbies() != null){
+
+            edt_hobbies.setText(settingsModel.getHobbies());
+        }
+        else {
+
+            edt_hobbies.setText("");
+        }
         //locationModel = gson.fromJson(jsonResp.getStrResponse(), LocationModel.class);
         updateView();
     }

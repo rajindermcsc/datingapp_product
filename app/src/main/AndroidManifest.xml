@@ -27,8 +27,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".views.main.StripeCardPaymentActivity"></activity>
-        <!-- android:launchMode="singleTask" -->
+        <activity android:name=".views.profile.AdvancedSettings"></activity>
+        <activity android:name=".views.main.StripeCardPaymentActivity" /> <!-- android:launchMode="singleTask" -->
         <activity
             android:name=".views.main.SplashActivity"
             android:noHistory="true"
@@ -55,7 +55,7 @@
         -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/app_logo" />
+            android:resource="@drawable/appicon" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/color_accent" />
@@ -213,6 +213,10 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>

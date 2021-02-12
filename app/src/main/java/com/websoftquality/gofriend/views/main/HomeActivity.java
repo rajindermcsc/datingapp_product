@@ -320,7 +320,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
     public void onBackPressed() {
         if (backPressed >= 1) {
             finishAffinity();
-            super.onBackPressed();       // bye
+            super.onBackPressed();
 
 
         } else {

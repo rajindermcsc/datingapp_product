@@ -45,6 +45,7 @@ import javax.inject.Inject;
 
 import com.websoftquality.gofriend.R;
 import com.websoftquality.gofriend.adapters.main.DropDownMenuAdapter;
+import com.websoftquality.gofriend.adapters.main.QuestionsAdapter;
 import com.websoftquality.gofriend.configs.AppController;
 import com.websoftquality.gofriend.configs.Constants;
 import com.websoftquality.gofriend.configs.SessionManager;
