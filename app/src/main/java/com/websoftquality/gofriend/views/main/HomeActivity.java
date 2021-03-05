@@ -8,6 +8,7 @@ package com.websoftquality.gofriend.views.main;
  **/
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.os.Looper;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -28,6 +30,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +45,7 @@ import android.widget.Toast;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.Gson;
 import com.obs.CustomTextView;
 
 import org.json.JSONException;
@@ -53,30 +57,47 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import com.sinch.android.rtc.ClientRegistration;
+import com.sinch.android.rtc.Sinch;
+import com.sinch.android.rtc.SinchClient;
+import com.sinch.android.rtc.SinchClientListener;
+import com.sinch.android.rtc.SinchError;
+import com.websoftquality.gofriend.BaseActivity;
+import com.websoftquality.gofriend.PlaceCallActivity;
 import com.websoftquality.gofriend.R;
+import com.websoftquality.gofriend.SinchService;
 import com.websoftquality.gofriend.configs.AppController;
 import com.websoftquality.gofriend.configs.RunTimePermission;
 import com.websoftquality.gofriend.configs.SessionManager;
 import com.websoftquality.gofriend.datamodels.chat.ReceiveDateModel;
+import com.websoftquality.gofriend.datamodels.main.JsonResponse;
+import com.websoftquality.gofriend.datamodels.main.MyProfileModel;
 import com.websoftquality.gofriend.interfaces.ActivityListener;
+import com.websoftquality.gofriend.interfaces.ApiService;
+import com.websoftquality.gofriend.interfaces.ServiceListener;
 import com.websoftquality.gofriend.pushnotification.Config;
 import com.websoftquality.gofriend.pushnotification.NotificationUtils;
 import com.websoftquality.gofriend.utils.CommonMethods;
+import com.websoftquality.gofriend.utils.RequestCallback;
 import com.websoftquality.gofriend.views.chat.ChatFragment;
 import com.websoftquality.gofriend.views.customize.CustomDialog;
 import com.websoftquality.gofriend.views.customize.IgniterViewPager;
 import com.websoftquality.gofriend.views.customize.SwipeDirection;
 import com.websoftquality.gofriend.views.profile.ProfileFragment;
 
+import static com.websoftquality.gofriend.utils.Enums.REQ_GET_MY_PROFILE;
+import static com.websoftquality.gofriend.utils.Enums.REQ_UPDATE_PROFILE;
+
 /*****************************************************************
  Application home page contain Home page fragment (Profile,home,chat)
  ****************************************************************/
-public class HomeActivity extends AppCompatActivity implements ActivityListener, ViewPager.OnPageChangeListener {
+public class HomeActivity extends BaseActivity implements ActivityListener, ViewPager.OnPageChangeListener, SinchService.StartFailedListener, ServiceListener {
 
     /**
      * @Reference Inject Global classes
      **/
     public IgniterViewPager viewPager;
+    private AlertDialog dialog;
     @Inject
     SessionManager sessionManager;
     @Inject
@@ -85,7 +106,13 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
     RunTimePermission runTimePermission;
     @Inject
     CustomDialog customDialog;
+    @Inject
+    ApiService apiService;
+    @Inject
+    Gson gson;
+    private MyProfileModel myProfileModel;
 
+    private ProgressDialog mSpinner;
 
     /**
      * @Reference Declare views
@@ -97,6 +124,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
     private BroadcastReceiver mBroadcastReceiver;
     private int matchStatus;
     private MyAdapter myAdapter;
+
 
     public static void hideKeyboard(Context ctx) {
         InputMethodManager inputManager = (InputMethodManager) ctx
@@ -116,9 +144,77 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
         setContentView(R.layout.home_tab_layout);
 
         AppController.getAppComponent().inject(this);
+
+        dialog = commonMethods.getAlertDialog(this);
+//        android.content.Context context = this.getApplicationContext();
+//        SinchClient sinchClient = Sinch.getSinchClientBuilder().context(context)
+//                .applicationKey("bb31e6d1-5eb8-48df-9cc4-0855df1769cb")
+//                .applicationSecret("COeW3ls670CI86pPd1NhZQ==")
+//                .environmentHost("clientapi.sinch.com")
+//                .userId("168071")
+//                .build();
+//
+//        sinchClient.setSupportCalling(true);
+//        sinchClient.setSupportManagedPush(true);
+//// or
+//        sinchClient.setSupportActiveConnectionInBackground(true);
+//        sinchClient.startListeningOnActiveConnection();
+//
+//        sinchClient.addSinchClientListener(new SinchClientListener() {
+//
+//            public void onClientStarted(SinchClient client) { }
+//
+//            public void onClientStopped(SinchClient client) { }
+//
+//            public void onClientFailed(SinchClient client, SinchError error) { }
+//
+//            public void onRegistrationCredentialsRequired(SinchClient client, ClientRegistration registrationCallback) { }
+//
+//            public void onLogMessage(int level, String area, String message) { }
+//        });
+//
+//        sinchClient.start();
+//        Log.e("TAG", "onCreate: "+sessionManager.getUserName());
+
         initViews();
         initMapPlaceAPI();
     }
+
+
+
+    private void showSpinner() {
+        mSpinner = new ProgressDialog(this);
+//        mSpinner.setTitle("Logging in");
+        mSpinner.setMessage("Please wait...");
+        mSpinner.show();
+    }
+
+    @Override
+    public void onStartFailed(SinchError error) {
+//        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
+//        if (mSpinner != null) {
+//            mSpinner.dismiss();
+//        }
+    }
+
+    @Override
+    protected void onServiceConnected() {
+//        mLoginButton.setEnabled(true);
+        getSinchServiceInterface().setStartListener(this);
+//        mSpinner.dismiss();
+    }
+
+
+    @Override
+    public void onStarted() {
+        Log.e("TAG", "onStarted: ");
+
+
+//        mSpinner.dismiss();
+//        openPlaceCallActivity();
+    }
+
+
 
     private void initMapPlaceAPI() {
         if (!Places.isInitialized()) {
@@ -439,6 +535,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
     public void onResume() {
         super.onResume();
         hideKeyboard(this);
+        getProfileDetails();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //check for runtime permission
@@ -458,6 +555,79 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
         // clear the notification area when the app is opened
         NotificationUtils.clearNotifications(getApplicationContext());
     }
+
+    private void getProfileDetails() {
+        apiService.getMyProfileDetail(sessionManager.getToken()).enqueue(new RequestCallback(REQ_GET_MY_PROFILE, this));
+    }
+
+    @Override
+    public void onSuccess(JsonResponse jsonResp, String data) {
+        commonMethods.hideProgressDialog();
+        if (!jsonResp.isOnline()) {
+            commonMethods.showMessage(this, dialog, data);
+            return;
+        }
+        switch (jsonResp.getRequestCode()) {
+            case REQ_UPDATE_PROFILE:
+                break;
+            case REQ_GET_MY_PROFILE:
+                if (jsonResp.isSuccess()) {
+                    onSuccessGetMyProfile(jsonResp);
+                } else if (!TextUtils.isEmpty(jsonResp.getStatusMsg())) {
+                    /*if(jsonResp.getStatusMsg().equalsIgnoreCase("Token Expired")){
+                        getProfileDetails();
+                    }else {*/
+                    commonMethods.showMessage(this, dialog, jsonResp.getStatusMsg());
+                    //}
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onFailure(JsonResponse jsonResp, String data) {
+
+    }
+
+    private void onSuccessGetMyProfile(JsonResponse jsonResp) {
+        myProfileModel = gson.fromJson(jsonResp.getStrResponse(), MyProfileModel.class);
+
+        if (myProfileModel != null) {
+            updateView();
+        }
+    }
+
+    private void updateView() {
+        StringBuilder sb = new StringBuilder();
+        if (!TextUtils.isEmpty(myProfileModel.getName())) {
+            sb.append(myProfileModel.getName());
+            sb.append(", ");
+            sb.append(myProfileModel.getAge());
+//            tvUserNameAge.setText(sb.toString());
+            sessionManager.setUserName(myProfileModel.getName());
+            Log.e("TAG", "updateView: "+myProfileModel.getName());
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!sessionManager.getUserName().equals(getSinchServiceInterface().getUserName())) {
+                        getSinchServiceInterface().stopClient();
+                    }
+
+                    if (!getSinchServiceInterface().isStarted()) {
+                        getSinchServiceInterface().startClient(sessionManager.getUserName());
+//                        showSpinner();
+                    } else {
+
+                    }
+                }
+            },5000);
+
+
+        }
+    }
+
 
     /**
      * Adapter for tabs
@@ -490,6 +660,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityListener,
                 case 0:
                     return new ProfileFragment();
                 case 1:
+
                     igniterPageFragment = new IgniterPageFragment();
                     return igniterPageFragment;
                 case 2:

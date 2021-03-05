@@ -1,2 +1,2 @@
-include ':app', ':custom-font-style-lib', ':photoview', ':image_cropping', ':instagramhelper', ':signinwithapplebutton'//,':swipedeck'
+include ':app', ':custom-font-style-lib', ':photoview', ':image_cropping', ':instagramhelper' ,':sinch-rtc-sample-video', ':signinwithapplebutton'//,':swipedeck'
 

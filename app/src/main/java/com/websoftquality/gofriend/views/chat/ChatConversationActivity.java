@@ -10,6 +10,7 @@ package com.websoftquality.gofriend.views.chat;
 import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.transition.Scene;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -31,6 +33,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -52,7 +55,16 @@ import java.util.TimeZone;
 import javax.inject.Inject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import com.sinch.android.rtc.ClientRegistration;
+import com.sinch.android.rtc.Sinch;
+import com.sinch.android.rtc.SinchClient;
+import com.sinch.android.rtc.SinchClientListener;
+import com.sinch.android.rtc.SinchError;
+import com.websoftquality.gofriend.BaseActivity;
+import com.websoftquality.gofriend.PlaceCallActivity;
 import com.websoftquality.gofriend.R;
+import com.websoftquality.gofriend.SinchService;
 import com.websoftquality.gofriend.adapters.chat.ChatConversationListAdapter;
 import com.websoftquality.gofriend.adapters.chat.UnmatchReasonListAdapter;
 import com.websoftquality.gofriend.configs.AppController;
@@ -82,8 +94,8 @@ import com.websoftquality.gofriend.views.profile.EnlargeProfileActivity;
 /*****************************************************************
  User Chat conversation page
  ****************************************************************/
-public class ChatConversationActivity extends AppCompatActivity implements View.OnClickListener, ServiceListener,
-        UnmatchReasonListAdapter.OnItemClickListener {
+public class ChatConversationActivity extends BaseActivity implements View.OnClickListener, ServiceListener,
+        UnmatchReasonListAdapter.OnItemClickListener, SinchService.StartFailedListener {
 
     public static boolean isConversationActivity = false;
     @Inject
@@ -136,7 +148,7 @@ public class ChatConversationActivity extends AppCompatActivity implements View.
     private CustomRecyclerView rvChatConversationList;
     private Dialog unMatchDialog;
 
-    private ImageView ivSendMsg;
+    private ImageView ivSendMsg,iv_video_call;
     private ChatConversationListAdapter chatConversationListAdapter;
     private UnmatchReasonListAdapter unmatchReasonListAdapter;
     private CustomLayoutManager linearLayoutManager;
@@ -155,12 +167,41 @@ public class ChatConversationActivity extends AppCompatActivity implements View.
 
     private EditText edtInfo;
     private String reportId;
+    private ProgressDialog mSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.chat_conversation_layout);
+        android.content.Context context = this.getApplicationContext();
+        SinchClient sinchClient = Sinch.getSinchClientBuilder().context(context)
+                .applicationKey("bb31e6d1-5eb8-48df-9cc4-0855df1769cb")
+                .applicationSecret("COeW3ls670CI86pPd1NhZQ==")
+                .environmentHost("clientapi.sinch.com")
+                .userId("168071")
+                .build();
+
+        sinchClient.setSupportCalling(true);
+        sinchClient.setSupportManagedPush(true);
+// or
+        sinchClient.setSupportActiveConnectionInBackground(true);
+        sinchClient.startListeningOnActiveConnection();
+
+        sinchClient.addSinchClientListener(new SinchClientListener() {
+
+            public void onClientStarted(SinchClient client) { }
+
+            public void onClientStopped(SinchClient client) { }
+
+            public void onClientFailed(SinchClient client, SinchError error) { }
+
+            public void onRegistrationCredentialsRequired(SinchClient client, ClientRegistration registrationCallback) { }
+
+            public void onLogMessage(int level, String area, String message) { }
+        });
+
+        sinchClient.start();
 
 
         AppController.getAppComponent().inject(this);
@@ -180,6 +221,7 @@ public class ChatConversationActivity extends AppCompatActivity implements View.
         tvLeftArrow = findViewById(R.id.tv_left_arrow);
         tvGifIcon = findViewById(R.id.tv_gif_icon);
         ivSendMsg = findViewById(R.id.iv_send);
+        iv_video_call = findViewById(R.id.iv_video_call);
         rvChatConversationList = findViewById(R.id.rv_chat_conversation_list);
         rltEmptyChat = findViewById(R.id.rlt_empty_chat);
         edtChatMsg = findViewById(R.id.edt_new_msg);
@@ -196,18 +238,21 @@ public class ChatConversationActivity extends AppCompatActivity implements View.
         setUpHeader();
 
         ivSendMsg.setEnabled(false);
-
+        iv_video_call.setVisibility(View.VISIBLE);
         ivSendMsg.setOnClickListener(this);
         tvGifIcon.setOnClickListener(this);
         tvLeftArrow.setOnClickListener(this);
         tvHeaderMenuIcon.setOnClickListener(this);
         civEmptyChatImage.setOnClickListener(this);
         civHeaderImgOne.setOnClickListener(this);
+        iv_video_call.setOnClickListener(this);
         initRecyclerView();
 
         receivePushNotification();
 
     }
+
+
 
     /**
      * Get Intent values from previous activities
@@ -277,12 +322,65 @@ public class ChatConversationActivity extends AppCompatActivity implements View.
         apiService.messageConversation(sessionManager.getToken(), matchId,TimeZone.getDefault().getID()).enqueue(new RequestCallback(Enums.REQ_MSG_CONVERSATION, this));
     }
 
+    private void openPlaceCallActivity() {
+        Log.e("TAG", "openPlaceCallActivity: ");
+        Intent mainActivity = new Intent(this, PlaceCallActivity.class);
+        Log.e("TAG", "openPlaceCallActivity: "+chatMessageModel.getLikedUsername());
+        mainActivity.putExtra("username",chatMessageModel.getLikedUsername().concat(" ").concat(chatMessageModel.getLikedUserLastName()));
+        startActivity(mainActivity);
+    }
+
+    private void showSpinner() {
+        mSpinner = new ProgressDialog(this);
+//        mSpinner.setTitle("Logging in");
+        mSpinner.setMessage("Please wait...");
+        mSpinner.show();
+    }
+
+    @Override
+    public void onStartFailed(SinchError error) {
+        Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show();
+        if (mSpinner != null) {
+            mSpinner.dismiss();
+        }
+    }
+
+    @Override
+    protected void onServiceConnected() {
+//        mLoginButton.setEnabled(true);
+        getSinchServiceInterface().setStartListener(this);
+//        mSpinner.dismiss();
+    }
+
+
+    @Override
+    public void onStarted() {
+        Log.e("TAG", "onStarted: ");
+
+
+        mSpinner.dismiss();
+        openPlaceCallActivity();
+    }
+
     /**
      * Default on click method
      */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.iv_video_call:
+                Log.e("TAG", "onClick: "+getSinchServiceInterface().getUserName());
+                if (!sessionManager.getUserName().equals(getSinchServiceInterface().getUserName())) {
+                    getSinchServiceInterface().stopClient();
+                }
+
+                if (!getSinchServiceInterface().isStarted()) {
+                    getSinchServiceInterface().startClient(sessionManager.getUserName());
+                    showSpinner();
+                } else {
+                    openPlaceCallActivity();
+                }
+                break;
             case R.id.tv_left_arrow:
                 onBackPressed();
                 break;

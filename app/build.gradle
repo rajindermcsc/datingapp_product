@@ -14,12 +14,16 @@ buildscript {
 
 repositories {
 //    maven { url 'https://maven.fabric.io/public' }
+
     mavenCentral()
 }
 
 allprojects {
     repositories {
         google()
+        flatDir {
+            dirs 'libs'
+        }
     }
     repositories {
         maven {
@@ -47,14 +51,15 @@ android {
 //            storePassword 'com.websoftquality.gofriend'
 //        }
 //    }
-    compileSdkVersion 28
+    compileSdkVersion 30
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.websoftquality.gofriend"
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 3
         versionName "1.0.2"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
@@ -107,14 +112,21 @@ android {
     }
     useLibrary 'org.apache.http.legacy'
 
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['src/main/jniLibs']
+//        }
+//    }
+
     lintOptions {
         checkReleaseBuilds false // Add this
         abortOnError false
     }
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -179,6 +191,8 @@ dependencies {
     //Countrycode
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'androidx.core:core-ktx:1.1.0'
+    compile(name:'sinch-android-rtc', version:'+', ext:'aar')
+//    implementation "com.quickblox:quickblox-android-sdk-videochat-webrtc:3.9.2"
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'

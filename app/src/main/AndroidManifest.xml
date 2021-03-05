@@ -11,6 +11,20 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.quickblox.sample.messages.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission
         android:name="android.permission.READ_PHONE_STATE"
         tools:node="remove" />
@@ -27,7 +41,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".views.profile.AdvancedSettings"></activity>
+        <activity android:name=".HomeActivity"
+            android:theme="@style/HomeTheme"></activity>
+
+        <activity android:name=".views.profile.AdvancedSettings"/>
         <activity android:name=".views.main.StripeCardPaymentActivity" /> <!-- android:launchMode="singleTask" -->
         <activity
             android:name=".views.main.SplashActivity"
@@ -68,6 +85,7 @@
             android:name=".views.main.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTransulent" />
+
         <activity
             android:name=".views.signup.SignUpActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -182,6 +200,20 @@
             android:name=".likedusers.LikedUsersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTransulent" />
+
+        <activity android:name=".CallScreenActivity" />
+        <activity android:name=".PlaceCallActivity" />
+        <activity android:name=".IncomingCallScreenActivity" />
+
+
+<!--        <service android:name=".Notifications.MyFirebaseMessaging"-->
+<!--            >-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+        <service android:name=".SinchService"
+            android:exported="false"/>
         <!--
 <meta-data
             android:name="com.websoftquality.gofriend.utils.MyGlideModule"

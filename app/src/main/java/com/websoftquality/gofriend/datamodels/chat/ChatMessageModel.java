@@ -32,6 +32,18 @@ public class ChatMessageModel {
     @SerializedName("liked_username")
     @Expose
     private String likedUsername;
+
+    public String getLikedUserLastName() {
+        return likedUserLastName;
+    }
+
+    public void setLikedUserLastName(String likedUserLastName) {
+        this.likedUserLastName = likedUserLastName;
+    }
+
+    @SerializedName("liked_lastname")
+    @Expose
+    private String likedUserLastName;
     @SerializedName("like_status")
     @Expose
     private String likeStatus;

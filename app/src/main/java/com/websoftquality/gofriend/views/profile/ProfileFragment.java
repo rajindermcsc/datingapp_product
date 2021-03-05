@@ -115,8 +115,8 @@ public class ProfileFragment extends Fragment implements ViewPager.OnPageChangeL
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupAutoSwiping();
         try {
+            setupAutoSwiping();
             listener = (ActivityListener) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException("Profile must implement ActivityListener");
@@ -258,7 +258,6 @@ public class ProfileFragment extends Fragment implements ViewPager.OnPageChangeL
                         viewPager.setCurrentItem(currentPosition);
                     }
                 }
-
             }
         };
 

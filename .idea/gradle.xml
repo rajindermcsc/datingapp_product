@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/instagramhelper" />
             <option value="$PROJECT_DIR$/photoview" />
             <option value="$PROJECT_DIR$/signinwithapplebutton" />
+            <option value="$PROJECT_DIR$/sinch-rtc-sample-video" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

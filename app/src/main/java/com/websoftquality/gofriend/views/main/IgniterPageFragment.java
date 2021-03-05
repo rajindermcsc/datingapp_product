@@ -360,23 +360,23 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
     public void onViewCreated(View v, Bundle savedInstanceState) {
 
         setupHelper();
-        cardStack = (SwipeDeck) view.findViewById(R.id.swipe_deck);
-        swipeLayout = (SwipeRelativeLayout) view.findViewById(R.id.swipeLayout);
-        ivReload = (ImageView) view.findViewById(R.id.iv_reload);
-        ivLike = (ImageView) view.findViewById(R.id.iv_like);
-        ivSuperLike = (ImageView) view.findViewById(R.id.iv_superlike);
-        ivUnLike = (ImageView) view.findViewById(R.id.iv_unlike);
-        ivBoost = (ImageView) view.findViewById(R.id.iv_boost);
+        cardStack = view.findViewById(R.id.swipe_deck);
+        swipeLayout = view.findViewById(R.id.swipeLayout);
+        ivReload = view.findViewById(R.id.iv_reload);
+        ivLike = view.findViewById(R.id.iv_like);
+        ivSuperLike = view.findViewById(R.id.iv_superlike);
+        ivUnLike = view.findViewById(R.id.iv_unlike);
+        ivBoost = view.findViewById(R.id.iv_boost);
 
-        rltReload = (RelativeLayout) view.findViewById(R.id.rlt_reload_lay);
-        rltLike = (RelativeLayout) view.findViewById(R.id.rlt_like_lay);
-        rltSuperLike = (RelativeLayout) view.findViewById(R.id.rlt_superlike_lay);
-        rltUnLike = (RelativeLayout) view.findViewById(R.id.rlt_unlike_lay);
-        rltBoost = (RelativeLayout) view.findViewById(R.id.rlt_boost_lay);
+        rltReload = view.findViewById(R.id.rlt_reload_lay);
+        rltLike = view.findViewById(R.id.rlt_like_lay);
+        rltSuperLike = view.findViewById(R.id.rlt_superlike_lay);
+        rltUnLike = view.findViewById(R.id.rlt_unlike_lay);
+        rltBoost = view.findViewById(R.id.rlt_boost_lay);
 
         dialog = commonMethods.getAlertDialog(mActivity);
-        civProfileImg = (CircleImageView) view.findViewById(R.id.civ_profile_image);
-        tvMatch = (CustomTextView) view.findViewById(R.id.tv_match);
+        civProfileImg = view.findViewById(R.id.civ_profile_image);
+        tvMatch = view.findViewById(R.id.tv_match);
 
 
         rltSuperLike.setEnabled(false);
@@ -523,7 +523,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
 
         //checkAllPermission(Constants.PERMISSIONS_STORAGE);
 
-        rippleBackground = (RippleBackground) view.findViewById(R.id.rb_background);
+        rippleBackground = view.findViewById(R.id.rb_background);
         rippleBackground.startRippleAnimation();
 
         //getHomePage();
@@ -657,8 +657,8 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.rlt_boost_lay:
                 Log.e(TAG, "Original JSON " + mSubscribedToInfiniteBoost);
-                Log.e(TAG, "Original JSON " + String.valueOf(mSubscribedToInfiniteBoost));
-                Log.e(TAG, "Original JSON " + String.valueOf(sessionManager.getRemainingBoost()));
+                Log.e(TAG, "Original JSON " + mSubscribedToInfiniteBoost);
+                Log.e(TAG, "Original JSON " + sessionManager.getRemainingBoost());
                 boostUser();
 
                 break;
@@ -717,7 +717,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
                     likeSwipeCall();
                 } else {
                     Log.e(TAG, "Original JSON " + mSubscribedToInfiniteSuperLike);
-                    Log.e(TAG, "Original JSON " + String.valueOf(mSubscribedToInfiniteSuperLike));
+                    Log.e(TAG, "Original JSON " + mSubscribedToInfiniteSuperLike);
                     // if (!mSubscribedToPlus) {
                     //rewind(false, 2);
                     intent = new Intent(mActivity, IgniterPlusDialogActivity.class);
@@ -794,7 +794,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
                 swipeProfile(userId, MATCH_SUPER_LIKE, getJson((int) itemId));
         } else {
             Log.e(TAG, "Original JSON " + mSubscribedToInfiniteSuperLike);
-            Log.e(TAG, "Original JSON " + String.valueOf(mSubscribedToInfiniteSuperLike));
+            Log.e(TAG, "Original JSON " + mSubscribedToInfiniteSuperLike);
             //if (!mSubscribedToInfiniteSuperLike) {
             //rewind(false, 2);
             cardStack.unSwipeCard();
@@ -829,7 +829,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
                 swipeProfile(userId, MATCH_LIKE, getJson((int) itemId));
         } else {
             Log.e(TAG, "Original JSON " + mSubscribedToPlus);
-            Log.e(TAG, "Original JSON " + String.valueOf(mSubscribedToPlus));
+            Log.e(TAG, "Original JSON " + mSubscribedToPlus);
             //if (!mSubscribedToPlus) {
             rewind(false, 2);
             Intent intent = new Intent(mActivity, IgniterPlusDialogActivity.class);
@@ -958,6 +958,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
 
         }
         if (latitude != 0 && longitude != 0) {
+
             tvMatch.setText(res.getString(R.string.find_people));
             apiService.showMatchingProfile(sessionManager.getToken(), latitude, longitude).enqueue(new RequestCallback(REQ_SHOW_ALL_MATCHES, this));
         }
@@ -1057,7 +1058,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
                     remainingBoostHours = matchProfilesModel.getRemainingBoostHours();
                     remainingBoostDay = matchProfilesModel.getRemainingBoostDay();
                     sessionManager.setRemainingBoost(remainingBoostCount);
-                    Log.e(TAG, "Match Profile " + String.valueOf(sessionManager.getRemainingBoost()));
+                    Log.e(TAG, "Match Profile " + sessionManager.getRemainingBoost());
 
                     try{
                         if (matchProfilesModel.getUnReadCount() != null && matchProfilesModel.getUnReadCount() > 0) {
@@ -1205,7 +1206,7 @@ public class IgniterPageFragment extends Fragment implements View.OnClickListene
                 mSubscribedToInfiniteBoost = true;
 
             sessionManager.setRemainingBoost(remainingBoostCount);
-            Log.e(TAG, "After Boost Applied " + String.valueOf(sessionManager.getRemainingBoost()));
+            Log.e(TAG, "After Boost Applied " + sessionManager.getRemainingBoost());
 
         }
     }

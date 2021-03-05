@@ -43,6 +43,7 @@ import com.websoftquality.gofriend.interfaces.ApiService;
 import com.websoftquality.gofriend.interfaces.ServiceListener;
 import com.websoftquality.gofriend.utils.CommonMethods;
 import com.websoftquality.gofriend.utils.Enums;
+import com.websoftquality.gofriend.utils.MessageToast;
 import com.websoftquality.gofriend.utils.RequestCallback;
 import com.websoftquality.gofriend.views.customize.CirclePageIndicator;
 import com.websoftquality.gofriend.views.customize.CustomDialog;
@@ -95,7 +96,9 @@ public class IgniterPlusDialogActivity extends AppCompatActivity implements IabB
     @Inject
     Gson gson;
     String type;
+    MessageToast messageToast;
     int month1PlanId, month6PlanId, month12PlanId, currentPlanId;
+    String plan_name,plan_type,plan_price;
 
     float month6Total, month12Total;
     String month1Name, month1Price, month1Type, month6Name, month6Price, month6Type, month12Name, month12Price, month12Type;
@@ -340,6 +343,7 @@ public class IgniterPlusDialogActivity extends AppCompatActivity implements IabB
         //this.setFinishOnTouchOutside(false);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         getWindow().setBackgroundDrawableResource(color.transparent);
+        messageToast=new MessageToast(this);
 
         SKU_INFINITE_ONE_BOOST = getResources().getString(R.string.iap_boost_1);
         SKU_INFINITE_FIVE_BOOST = getResources().getString(R.string.iap_boost_5);
@@ -642,6 +646,8 @@ public class IgniterPlusDialogActivity extends AppCompatActivity implements IabB
                 else if (type.equals("gold"))
                     mSelectedSubscriptionPeriod = SKU_INFINITE_1_IG;
 
+                plan_price = tvOneMonthPrice.getText().toString();
+                plan_name = tvOneMonth.getText().toString();
                 currentPlanId = month1PlanId;
                 changeViewBg(1);
                 changeViewColor(1);
@@ -657,6 +663,8 @@ public class IgniterPlusDialogActivity extends AppCompatActivity implements IabB
                 else if (type.equals("gold"))
                     mSelectedSubscriptionPeriod = SKU_INFINITE_6_IG;
                 currentPlanId = month6PlanId;
+                plan_price = tvSixTotalPrice.getText().toString();
+                plan_name = tvSixMonth.getText().toString();
                 changeViewBg(6);
                 changeViewColor(6);
                 lltSixMonth.startAnimation(animZoomOutIn);
@@ -671,13 +679,28 @@ public class IgniterPlusDialogActivity extends AppCompatActivity implements IabB
                 else if (type.equals("gold"))
                     mSelectedSubscriptionPeriod = SKU_INFINITE_12_IG;
                 currentPlanId = month12PlanId;
+                plan_price = tvTwelveTotalPrice.getText().toString();
+                plan_name = tvTwelveMonth.getText().toString();
                 changeViewBg(12);
                 changeViewColor(12);
                 lltTwelveMonth.startAnimation(animZoomOutIn);
                 break;
             case id.btn_continue:
-                Intent intent=new Intent(IgniterPlusDialogActivity.this,StripeCardPaymentActivity.class);
-                startActivity(intent);
+                Log.e(TAG, "onClick: "+currentPlanId);
+                Log.e(TAG, "onClick: "+plan_name);
+                Log.e(TAG, "onClick: "+plan_price);
+                Log.e(TAG, "onClick: "+type);
+                if (plan_price!=null){
+                    Intent intent = new Intent(IgniterPlusDialogActivity.this, StripeCardPaymentActivity.class);
+                    intent.putExtra("plan_id", String.valueOf(currentPlanId));
+                    intent.putExtra("plan_name", plan_name);
+                    intent.putExtra("plan_price", plan_price);
+                    intent.putExtra("plan_type", type);
+                    startActivity(intent);
+                } else {
+
+                    messageToast.showDialog("Please Select One Plan");
+                }
 //                /**
 //                 * Change update Transaction method while live release for without calling in app purchase
 //                 */

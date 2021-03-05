@@ -138,7 +138,7 @@ public class SettingsModel {
 
     @SerializedName("other_settings")
     @Expose
-    ArrayList < OtherSettingsModel > other_settings = new ArrayList < OtherSettingsModel > ();
+    ArrayList < OtherSettingsModel > other_settings = new ArrayList <> ();
 
     public String getMessage() {
         return message;

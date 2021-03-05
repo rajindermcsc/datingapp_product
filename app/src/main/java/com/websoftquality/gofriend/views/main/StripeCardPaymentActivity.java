@@ -34,14 +34,15 @@ import javax.inject.Inject;
 
 public class StripeCardPaymentActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
 
+    private static final String TAG = "StripeCardPaymentActivity";
     EditText edt_card,edt_expiry,edt_cvv,edt_name;
     JSONObject jsonObject;
     Loading loading;
     String apiurl;
     Apierror_handle apierror_handle;
-    TextView tv_continue;
+    TextView tv_continue,tv_header_title,tv_left_arrow;
     Intent intent;
-    String amount,item;
+    String amount,plan_id,plan_type,plan_price,plan_name;
     @Inject
     SessionManager sessionManager;
     MessageToast messageToast;
@@ -60,11 +61,19 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
         AppController.getAppComponent().inject(this);
         intent=getIntent();
         amount=intent.getStringExtra("amount");
-        item=intent.getStringExtra("item");
+        plan_id=intent.getStringExtra("plan_id");
+        plan_type=intent.getStringExtra("plan_type");
+        plan_price=intent.getStringExtra("plan_price");
+        plan_name=intent.getStringExtra("plan_name");
         tv_continue=findViewById(R.id.tv_continue);
+        tv_header_title=findViewById(R.id.tv_header_title);
+        tv_left_arrow=findViewById(R.id.tv_left_arrow);
+        tv_left_arrow.setOnClickListener(this);
+        tv_header_title.setText("Payment");
         edt_card=findViewById(R.id.edt_card);
         edt_expiry=findViewById(R.id.edt_expiry);
         edt_cvv=findViewById(R.id.edt_cvv);
+        edt_name=findViewById(R.id.edt_name);
         tv_continue.setOnClickListener(this);
         edt_expiry.addTextChangedListener(this);
     }
@@ -73,6 +82,9 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
     public void onClick(View v) {
         if (v.getId()==R.id.tv_continue){
             validations();
+        }
+        else if (v.getId()==R.id.tv_left_arrow){
+            onBackPressed();
         }
     }
 
@@ -97,16 +109,8 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
             Toast.makeText(this, "CVV is invalid", Toast.LENGTH_SHORT).show();
         }
         else {
-            messageToast.showDialog("Payment Successfully");
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent=new Intent(StripeCardPaymentActivity.this,HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            },2900);
-//            savecardDetails(getResources().getString(R.string.base_url).concat("setpayment"));
+
+            savecardDetails(getResources().getString(R.string.base_url).concat("payment"));
         }
     }
 
@@ -123,10 +127,16 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
                     loading.hideDialog();
                     final JSONObject jsonObject = new JSONObject(response);
                     Log.e("TAG", "onResponse: "+jsonObject);
-                    if (jsonObject.getString("status_code").equals("1"))
-                    {
-//                        Intent intent=new Intent(StripeCardPaymentActivity.this,ProfileActivity.class);
-//                        startActivity(intent);
+                    if (jsonObject.getString("status").equals("200")) {
+                        messageToast.showDialog("Payment Successfully");
+                        handler.postDelayed(new Runnable() {
+                        @Override
+                         public void run() {
+                            Intent intent=new Intent(StripeCardPaymentActivity.this,HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        },2900);
                     }
                     else
                     {
@@ -162,11 +172,26 @@ public class StripeCardPaymentActivity extends AppCompatActivity implements View
             @Override
             protected Map<String, String> getParams()
             {
+                String name[]=edt_expiry.getText().toString().split("/");
+
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("plan_id", item);
+                Log.e(TAG, "getParams: "+plan_id);
+                Log.e(TAG, "getParams: "+plan_price);
+                String price[]=plan_price.split(":");
+                String price_=price[1].substring(2);
+                Log.e(TAG, "getParams: "+price_.length());
+                Log.e(TAG, "getParams: "+price_);
+                Log.e(TAG, "getParams: "+plan_type);
+                Log.e(TAG, "getParams: "+plan_name);
+                params.put("plan_id", plan_id);
+                params.put("plan_price", price_);
+                params.put("plan_type", plan_type);
+                params.put("plan_month", plan_name);
                 params.put("cvv", edt_cvv.getText().toString());
-                params.put("expiry_date", edt_expiry.getText().toString());
-                params.put("card_num", edt_card.getText().toString());
+                params.put("card_number", edt_card.getText().toString());
+                params.put("exp_month", name[0]);
+                params.put("exp_year", name[1]);
+                params.put("name_on_card", edt_name.getText().toString());
                 params.put("token", sessionManager.getToken());
                 return params;
             }

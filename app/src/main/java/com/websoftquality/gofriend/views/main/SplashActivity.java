@@ -159,9 +159,9 @@ public class SplashActivity extends AppCompatActivity implements ServiceListener
 
         for (int i=0;i<appdata.size();i++){
             if (appdata.get(i).getName().equalsIgnoreCase("logo_web_1")){
-                Log.e(TAG, "onSuccessGetSliderImg: "+"https://websoftquality.com/dating/public/logos/"+appdata.get(i).getValue());
+                Log.e(TAG, "onSuccessGetSliderImg: "+"https://www.webmobcoders.com/dating/public/logos/"+appdata.get(i).getValue());
                 Glide.with(this)
-                        .load("https://websoftquality.com/dating/public/logos/"+appdata.get(i).getValue())
+                        .load("https://www.webmobcoders.com/dating/public/logos/"+appdata.get(i).getValue())
                         .centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(iv_logo);

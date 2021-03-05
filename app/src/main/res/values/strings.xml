@@ -6,11 +6,13 @@
     <string name="app_name">&appname;</string>
     <string name="package_name">com.websoftquality.gofriend</string>
     <string name="version">Version 1.0.0</string>
+    <string name="agora_app_id">45965342d598458b8500cfcce86bfe2e</string>
+    <string name="agora_access_token">00645965342d598458b8500cfcce86bfe2eIADlloHcBdAAtigeTu+fL1KdOeittNlyiLyv3gSdbgnD3J5wcHYAAAAAEACMMKzfNV42YAEAAQA1XjZg</string>
 
-    <string name="base_url">"https://websoftquality.com/dating/public/api/"</string>
-    <string name="share_url">"https://websoftquality.com/dating/public/admin/login"</string>
-    <string name="redirect_url">"https://websoftquality.com/dating/public/"</string>
-    <string name="apple_redirect_url">"https://websoftquality.com/dating/public/api/apple_callback"</string>
+    <string name="base_url">"https://www.webmobcoders.com/dating/public/api/"</string>
+    <string name="share_url">"https://www.webmobcoders.com/dating/public/admin/login"</string>
+    <string name="redirect_url">"https://www.webmobcoders.com/dating/public/"</string>
+    <string name="apple_redirect_url">"https://www.webmobcoders.com/dating/public/api/apple_callback"</string>
     <string name="user_settings">"user_settings"</string>
 
 
@@ -572,6 +574,7 @@
     <string name="no_of_kids_you_want">No of kids you want?</string>
     <string name="education">Education</string>
     <string name="never_married">Never Married</string>
+    <string name="sign_out">Sign Out</string>
 
     <string-array name="QUICK_MENU_TITLE">
         <item>Unmatch</item>

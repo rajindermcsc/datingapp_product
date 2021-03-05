@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/instagramhelper/instagramhelper.iml" filepath="$PROJECT_DIR$/.idea/modules/instagramhelper/instagramhelper.iml" group="DatingApp/instagramhelper" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/photoview/photoview.iml" filepath="$PROJECT_DIR$/.idea/modules/photoview/photoview.iml" group="DatingApp/photoview" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/signinwithapplebutton/signinwithapplebutton.iml" filepath="$PROJECT_DIR$/.idea/modules/signinwithapplebutton/signinwithapplebutton.iml" group="DatingApp/signinwithapplebutton" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sinch-rtc-sample-video/sinch-rtc-sample-video.iml" filepath="$PROJECT_DIR$/.idea/modules/sinch-rtc-sample-video/sinch-rtc-sample-video.iml" group="DatingApp/sinch-rtc-sample-video" />
     </modules>
   </component>
 </project>

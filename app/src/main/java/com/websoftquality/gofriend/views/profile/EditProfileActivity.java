@@ -862,7 +862,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     InstagramUser user = instagramHelper.getInstagramUser(this);
                     if (user != null && user.getData() != null && !TextUtils.isEmpty(user.getData().getUsername())) {
                         tvInstagram.setText(user.getData().getUsername());
-                        tvConnect.setText(getString(R.string.disconnect));
+                        tvConnect.setText(getString(R.string.reject));
                         instagramUserName = user.getData().getUsername();
                     }
                     break;*/
